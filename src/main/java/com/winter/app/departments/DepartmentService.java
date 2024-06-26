@@ -15,4 +15,8 @@ public class DepartmentService {
 		return departmentDAO.getList();
 	}
 
+	public DepartmentDTO getDetail(int num) throws Exception {
+		return departmentDAO.getDetail(num);
+	}
+
 }
