@@ -95,7 +95,7 @@ public class DepartmentDAO {
 
 		// 2. Sql 생성
 		String sql = "INSERT INTO DEPARTMENTS " + " (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID)"
-				+ " values (DEPARTMENT_SEQ.NEXTVAL, ?, ?, ?)";
+				+ " values (DEPARTMENTS_SEQ.NEXTVAL, ?, ?, ?)";
 
 		// 3. 미리전송
 		PreparedStatement st = con.prepareStatement(sql);
@@ -109,6 +109,49 @@ public class DepartmentDAO {
 		int result = st.executeUpdate();
 
 		// 6. 자원 해제
+		st.close();
+		con.close();
+
+		return result;
+	}
+
+	// 삭제
+	// delete
+	public int delete(DepartmentDTO departmentDTO) throws Exception {
+		Connection con = dbConnection.getConnection();
+
+		String sql = "DELETE DEPARTMENTS WHERE DEPARTMENT_ID=?";
+
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setInt(1, departmentDTO.getDepartment_id());
+
+		int result = st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return result;
+	}
+
+	// update
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+		int result = 0;
+
+		Connection con = dbConnection.getConnection();
+
+		String sql = "UPDATE DEPARTMENTS SET DEPARTMENT_NAME=?, MANAGER_ID=?, LOCATION_ID=? "
+				+ " WHERE DEPARTMENT_ID=?";
+
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setString(1, departmentDTO.getDepartment_name());
+		st.setLong(2, departmentDTO.getManager_id());
+		st.setInt(3, departmentDTO.getLocation_id());
+		st.setInt(4, departmentDTO.getDepartment_id());
+
+		result = st.executeUpdate();
+
 		st.close();
 		con.close();
 
