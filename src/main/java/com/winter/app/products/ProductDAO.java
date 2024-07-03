@@ -49,6 +49,7 @@ public class ProductDAO {
 		String sql = "SELECT * FROM BANKBOOK WHERE BOOKNUMBER =?";
 
 		PreparedStatement st = con.prepareStatement(sql);
+
 		st.setLong(1, productDTO.getBookNumber());
 
 		ResultSet rs = st.executeQuery();
