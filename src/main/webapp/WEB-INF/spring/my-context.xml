@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 클래스명 변수명 = new 생성자() -->
+	<!-- FQDN -->
+	<bean class="com.winter.app.robot.LeftArm" id="leftArm"></bean>
+	<!-- <bean class="com.winter.app.robot.LeftArm" id="leftArm2"></bean> -->
+	
+	<bean class="com.winter.app.robot.RightArm" id="rightArm"></bean>
+	
+	
+	<bean class="com.winter.app.robot.Wheel" id="wheel">
+		<!-- 인덱스 번호로 매개변수 구분 
+		<constructor-arg index="0" value="50"></constructor-arg>
+		<constructor-arg index="1" value="LG"></constructor-arg>
+		<constructor-arg index="2" value="2"></constructor-arg>
+		 -->
+		<!-- 데이터타입으로 매개변수 구분  
+		<constructor-arg type="int" value=""></constructor-arg>
+		 -->
+		 <!-- 매개변수 이름으로 구분 -->
+		 <constructor-arg name="size" value="50"></constructor-arg>
+		 <constructor-arg name="brand" value="LG"></constructor-arg>
+		 <constructor-arg name="count" value="5"></constructor-arg>
+	</bean>
+	
+	<bean class="com.winter.app.robot.Robot" id="robot">
+		<!-- name=setter의 이름 -->
+		<!-- value : primitive type의 값 과 String 값-->
+		<property name="company" value="DooSan"></property>
+		<property name="age" value="20"></property>
+		<property name="leftArm" ref="leftArm"></property>
+		<property name="rightArm" ref="rightArm"></property>
+	
+	</bean>
+
+</beans>

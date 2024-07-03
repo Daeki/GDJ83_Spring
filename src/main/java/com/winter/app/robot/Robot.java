@@ -1,35 +1,50 @@
 package com.winter.app.robot;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
-//객체 생성 @COntroller, @Service @Repository @Component Spring pool
-@Component // new Robot();
+//객체 생성 @Controller, @Service @Repository @Component Spring pool
+//@Component // new Robot();
 public class Robot {
 
-	@Autowired // setRightArm(rightArm)
-	@Qualifier("ra")
+	private String company;
+
+	private int age;
+	// @Autowired // setRightArm(rightArm)
+	// @Qualifier("ra")
 	private Arm rightArm;
 
-	@Autowired
-	@Qualifier("la")
+	// @Autowired
+	// @Qualifier("la")
 	private Arm leftArm;
 
-	public Arm getRa() {
-		return ra;
+	public String getCompany() {
+		return company;
 	}
 
-	public void setRa(Arm ra) {
-		this.ra = ra;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
-	public Arm getLa() {
-		return la;
+	public int getAge() {
+		return age;
 	}
 
-	public void setLa(Arm la) {
-		this.la = la;
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Arm getRightArm() {
+		return rightArm;
+	}
+
+	public void setRightArm(Arm rightArm) {
+		this.rightArm = rightArm;
+	}
+
+	public Arm getLeftArm() {
+		return leftArm;
+	}
+
+	public void setLeftArm(Arm leftArm) {
+		this.leftArm = leftArm;
 	}
 
 }

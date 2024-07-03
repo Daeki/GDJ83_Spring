@@ -29,9 +29,11 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		// 객체 생성 문버>???
-		robot.getRa().info();
-		robot.getLa().info();
+//		robot.getRa().info();
+//		robot.getLa().info();
 		// DI를 개발자가 아니라 SPring Container 위임 - IOC
+		robot.getLeftArm().info();
+		robot.getRightArm().info();
 
 		return "index";
 	}
