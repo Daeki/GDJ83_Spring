@@ -33,8 +33,12 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<div class="row">
+				<div >
+					<a href="./add" class="btn btn-danger">상품등록</a>
+				</div>
+			</div>
 		</div>
-	
 	</div>
 	
 </div>

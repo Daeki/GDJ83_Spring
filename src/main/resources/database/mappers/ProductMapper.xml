@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.winter.app.products.ProductDAO">
+  
+  	<select id="getList" resultType="com.winter.app.products.ProductDTO">
+  		SELECT * FROM BANKBOOK ORDER BY BOOKNUMBER DESC
+  	</select>
+  	
+  	<select id="getDetail" resultType="com.winter.app.products.ProductDTO" parameterType="com.winter.app.products.ProductDTO">
+  		SELECT * FROM BANKBOOk WHERE BOOKNUMBER = #{bookNumber}
+  	</select>
+  	
+  	<insert id="add" parameterType="com.winter.app.products.ProductDTO">
+  		INSERT INTO BANKBOOK 
+  		VALUES (BANKBOOK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, 1, #{bookDetail})
+  	</insert>
+  	  	
+  	<update id="update" parameterType="com.winter.app.products.ProductDTO">
+  		UPDATE BANKBOOK SET 
+  			BOOKNAME=#{bookName}, 
+  			BOOKRATE=#{bookRate},
+  			BOOKDETAIL=#{bookDetail} 
+  		WHERE BOOKNUMBER=#{bookNumber}
+  	</update>
+  	
+  	<delete id="delete" parameterType="com.winter.app.products.ProductDTO">
+  		DELETE BANKBOOK WHERE BOOKNUMBER=#{bookNumber}
+  	</delete>
+  	
+  	
+  	
+  </mapper>

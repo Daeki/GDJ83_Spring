@@ -1,74 +1,39 @@
 package com.winter.app.products;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.winter.app.util.DBConnection;
 
 @Repository
 public class ProductDAO {
 
 	@Autowired
-	private DBConnection dbConnection;
+	private SqlSession sqlSession;
+
+	private final String NAMESPACE = "com.winter.app.products.ProductDAO.";
 
 	public List<ProductDTO> getList() throws Exception {
-		Connection con = dbConnection.getConnection();
+		return sqlSession.selectList(NAMESPACE + "getList");
 
-		String sql = "SELECT * FROM BANKBOOK ORDER BY BOOKNUMBER DESC";
-
-		PreparedStatement st = con.prepareStatement(sql);
-
-		ResultSet rs = st.executeQuery();
-		List<ProductDTO> ar = new ArrayList<ProductDTO>();
-		while (rs.next()) {
-			ProductDTO productDTO = new ProductDTO();
-
-			productDTO.setBookName(rs.getString("BOOKNAME"));
-			productDTO.setBookNumber(rs.getLong("BOOKNUMBER"));
-			productDTO.setBookRate(rs.getDouble("BOOKRATE"));
-			ar.add(productDTO);
-		}
-
-		rs.close();
-		st.close();
-		con.close();
-
-		return ar;
 	}
 
 	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getDetail", productDTO);
 
-		Connection con = dbConnection.getConnection();
+	}
 
-		String sql = "SELECT * FROM BANKBOOK WHERE BOOKNUMBER =?";
+	public int add(ProductDTO productDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "add", productDTO);
+	}
 
-		PreparedStatement st = con.prepareStatement(sql);
+	public int delete(ProductDTO productDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "delete", productDTO);
+	}
 
-		st.setLong(1, productDTO.getBookNumber());
-
-		ResultSet rs = st.executeQuery();
-
-		if (rs.next()) {
-
-			productDTO.setBookName(rs.getString("BOOKNAME"));
-			productDTO.setBookNumber(rs.getLong("BOOKNUMBER"));
-			productDTO.setBookRate(rs.getDouble("BOOKRATE"));
-			productDTO.setBookDetail(rs.getString("BOOKDETAIL"));
-		} else {
-			productDTO = null;
-		}
-
-		rs.close();
-		st.close();
-		con.close();
-
-		return productDTO;
+	public int update(ProductDTO productDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "update", productDTO);
 	}
 
 }

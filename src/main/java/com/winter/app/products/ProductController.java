@@ -29,4 +29,36 @@ public class ProductController {
 		model.addAttribute("dto", productDTO);
 	}
 
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String add() throws Exception {
+		return "product/form";
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add(ProductDTO productDTO) throws Exception {
+
+		int result = productService.add(productDTO);
+
+		return "redirect:./list";
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(ProductDTO productDTO, Model model) throws Exception {
+		productDTO = productService.getDetail(productDTO);
+		model.addAttribute("dto", productDTO);
+		return "product/form";
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(ProductDTO productDTO) throws Exception {
+		int result = productService.update(productDTO);
+		return "redirect:./list";
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete(ProductDTO productDTO) throws Exception {
+		int result = productService.delete(productDTO);
+		return "redirect:./list";
+	}
+
 }
