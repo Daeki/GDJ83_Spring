@@ -13,4 +13,18 @@ public class MemberService {
 		return memberDAO.join(memberDTO);
 	}
 
+	public MemberDTO login(MemberDTO memberDTO) throws Exception {
+		MemberDTO result = memberDAO.login(memberDTO);
+		if (result != null) {
+			if (result.getPassword().equals(memberDTO.getPassword())) {
+				return result;
+			} else {
+				// return null;
+				result = null;
+			}
+		}
+
+		return result;
+	}
+
 }

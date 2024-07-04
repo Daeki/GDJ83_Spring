@@ -9,4 +9,8 @@
   		VALUES (#{userName}, #{password}, #{name}, #{email}, #{phone}, #{address})
   	</insert>
   	
+  	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+  		SELECT * FROM MEMBER WHERE USERNAME=#{userName}
+  	</select>
+  	
   </mapper>
