@@ -5,20 +5,20 @@
 
   <mapper namespace="com.winter.app.products.ProductDAO">
   
-  	<select id="getList" resultType="com.winter.app.products.ProductDTO">
+  	<select id="getList" resultType="ProductDTO">
   		SELECT * FROM BANKBOOK ORDER BY BOOKNUMBER DESC
   	</select>
   	
-  	<select id="getDetail" resultType="com.winter.app.products.ProductDTO" parameterType="com.winter.app.products.ProductDTO">
+  	<select id="getDetail" resultType="ProductDTO" parameterType="ProductDTO">
   		SELECT * FROM BANKBOOk WHERE BOOKNUMBER = #{bookNumber}
   	</select>
   	
-  	<insert id="add" parameterType="com.winter.app.products.ProductDTO">
+  	<insert id="add" parameterType="ProductDTO">
   		INSERT INTO BANKBOOK 
   		VALUES (BANKBOOK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, 1, #{bookDetail})
   	</insert>
   	  	
-  	<update id="update" parameterType="com.winter.app.products.ProductDTO">
+  	<update id="update" parameterType="ProductDTO">
   		UPDATE BANKBOOK SET 
   			BOOKNAME=#{bookName}, 
   			BOOKRATE=#{bookRate},
@@ -26,7 +26,7 @@
   		WHERE BOOKNUMBER=#{bookNumber}
   	</update>
   	
-  	<delete id="delete" parameterType="com.winter.app.products.ProductDTO">
+  	<delete id="delete" parameterType="ProductDTO">
   		DELETE BANKBOOK WHERE BOOKNUMBER=#{bookNumber}
   	</delete>
   	
