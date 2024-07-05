@@ -1,5 +1,7 @@
 package com.winter.app;
 
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +24,12 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletRequest request) {
+		// 1
+		Calendar ca = Calendar.getInstance();
+
+		long l = ca.getTimeInMillis();
+		String s = String.valueOf(l);
+
 		// 하위 -> 상위 O
 		// 상위 -> 하위 X
 		HttpSession session = request.getSession();
