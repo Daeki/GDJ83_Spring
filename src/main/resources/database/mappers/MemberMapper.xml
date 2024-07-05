@@ -19,4 +19,8 @@
 		WHERE USERNAME =#{userName}
   	</update>
   	
+  	<delete id="delete" parameterType="MemberDTO">
+  		DELETE MEMBER WHERE USERNAME=#{userName}
+  	</delete>
+  	
   </mapper>

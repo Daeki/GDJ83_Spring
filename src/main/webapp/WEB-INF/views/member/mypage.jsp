@@ -21,6 +21,9 @@
 			<h3>${member.address}</h3>
 			<div>
 				<a href="./update" class="btn btn-primary">회원수정</a>
+				<form action="delete" method="post">
+					<button class="btn btn-danger">회원탈퇴</button>
+				</form>
 			</div>
 		</div>
 		
