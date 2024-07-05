@@ -67,6 +67,37 @@ public class MemberController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate(); // session의 유지시간을 0으로 설정
+//		session.setAttribute("member", null);
+//		session.removeAttribute("member");
+//		session.removeValue("member");
+//		session.isNew();
+		return "redirect:../";
+	}
+
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public void mypage(HttpSession session, Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO = memberService.login(memberDTO);
+		model.addAttribute("member", memberDTO);
+
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public void update(HttpSession session, Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO = memberService.login(memberDTO);
+		model.addAttribute("member", memberDTO);
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(MemberDTO memberDTO, HttpSession session) throws Exception {
+		MemberDTO user = (MemberDTO) session.getAttribute("member");
+		memberDTO.setUserName(user.getUserName());
+		int result = memberService.update(memberDTO);
+//		if (result > 0) {
+//			session.setAttribute("member", memberDTO);
+//		}
+
 		return "redirect:../";
 	}
 
