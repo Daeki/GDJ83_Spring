@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="com.winter.app.products.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.winter.app.members.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.winter.app.accounts.AccountDTO" alias="AccountDTO"/>
 		
 		<typeAlias type="java.util.Map" alias="Map"/>
 	</typeAliases>

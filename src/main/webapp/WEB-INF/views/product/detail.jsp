@@ -36,7 +36,7 @@
 			</table>
 			<div class="row">
 				<div >
-					<a href="">상품가입</a>
+					<a href="../account/add?bookNumber=${dto.bookNumber}" class="btn btn-info">상품가입</a>
 					<a href="./update?bookNumber=${dto.bookNumber}" class="btn btn-danger">상품수정</a>
 					<a href="./delete?bookNumber=${dto.bookNumber}" class="btn btn-primary">상품삭제</a>
 				</div>
