@@ -9,10 +9,28 @@
   		VALUES(#{accountNumber}, #{bookNumber}, #{userName}, SYSDATE, 0)
   	</insert>
   	
-  	<select id="list" parameterType="MemberDTO" resultType="AccountDTO">
-  		SELECT ACCOUNTNUMBER, ACCOUNTBALANCE 
-  		FROM ACCOUNT
-  		WHERE USERNAME=#{userName}
+  	<select id="detail" parameterType="AccountDTO" resultMap="detailResult">
+  		SELECT 
+		FROM ACCOUNT A
+			 INNER JOIN
+			 BANKBOOK B
+			 ON A.BOOKNUMBER = B.BOOKNUMBER
+		WHERE A.ACCOUNTNUMBER=?
+  	
   	</select>
+  	
+  	<resultMap type="AccountDTO" id="detailResult">
+  		<id column="ACCOUNTNUMBER" property="accountNumber"/>
+  		<result column="BOOKNUMBER" property="bookNumber"/>
+  		<result column="ACCOUNTDATE" property="accountDate"/>
+  		<result column="ACCOUNTBALANCE" property="accountBalance"/>
+  		<!-- 1:1 -->
+  		<association property="productDTO" javaType="ProductDTO" >
+  			<result column="BOOKNAME" property="bookName"/>
+  			<result column="BOOKRATE" property="bookRate"/>
+  		</association>
+  	
+  	</resultMap>
+	
   	
   </mapper>

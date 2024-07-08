@@ -9,18 +9,24 @@
   		VALUES (#{userName}, #{password}, #{name}, #{email}, #{phone}, #{address})
   	</insert>
   	
-  	<select id="login" parameterType="MemberDTO" resultMap="loginResult">
-  		SELECT M.*, A.* 
+  	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+  		SELECT USERNAME, PASSWORD, NAME  
+  		FROM MEMBER  
+  		WHERE USERNAME=#{userName}
+  	</select>
+  	
+  	<select id="detail" parameterType="MemberDTO" resultMap="loginResult">
+  		SELECT M.*, A.*
   		FROM MEMBER M
   			 LEFT JOIN
   			 ACCOUNT A
-  			 ON M.USERNAME=A.USERNAME 
+  			 ON M.USERNAME = A.USERNAME
   		WHERE M.USERNAME=#{userName}
   	</select>
   	
   	<resultMap type="MemberDTO" id="loginResult">
-  		<!-- primary key 용도 -->
-  		<!-- column="컬럼명" property="setter의 이름" -->
+  		<!--  primary key 용도 -->
+  		<!-- Column="컬럼명" property="setter의 이름" -->
   		<id column="USERNAME" property="userName"/>
   		<result column="PASSWORD" property="password"/>
   		<result column="NAME" property="name"/>

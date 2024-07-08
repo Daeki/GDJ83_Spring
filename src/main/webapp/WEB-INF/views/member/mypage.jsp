@@ -23,7 +23,7 @@
 			<div>
 				<h3>계좌정보</h3>
 				<c:forEach items="${member.dtos}" var="ac">
-					<h3>${ac.accountNumber} : ${ac.accountBalance}</h3>
+					<h3><a href="../account/detail?accountNumber=${ac.accountNumber}">${ac.accountNumber}</a> : ${ac.accountBalance}</h3>
 				</c:forEach>
 			</div>
 			

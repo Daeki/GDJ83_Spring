@@ -2,6 +2,9 @@ package com.winter.app.accounts;
 
 import java.sql.Date;
 
+import com.winter.app.members.MemberDTO;
+import com.winter.app.products.ProductDTO;
+
 public class AccountDTO {
 
 	private Long accountNumber;
@@ -9,6 +12,24 @@ public class AccountDTO {
 	private String userName;
 	private Date accountDate;
 	private Long accountBalance;
+	private MemberDTO memberDTO;
+	private ProductDTO productDTO;
+
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
+
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
 
 	public Long getAccountNumber() {
 		return accountNumber;
