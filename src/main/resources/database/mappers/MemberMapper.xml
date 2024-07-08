@@ -9,9 +9,34 @@
   		VALUES (#{userName}, #{password}, #{name}, #{email}, #{phone}, #{address})
   	</insert>
   	
-  	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
-  		SELECT * FROM MEMBER WHERE USERNAME=#{userName}
+  	<select id="login" parameterType="MemberDTO" resultMap="loginResult">
+  		SELECT M.*, A.* 
+  		FROM MEMBER M
+  			 LEFT JOIN
+  			 ACCOUNT A
+  			 ON M.USERNAME=A.USERNAME 
+  		WHERE M.USERNAME=#{userName}
   	</select>
+  	
+  	<resultMap type="MemberDTO" id="loginResult">
+  		<!-- primary key 용도 -->
+  		<!-- column="컬럼명" property="setter의 이름" -->
+  		<id column="USERNAME" property="userName"/>
+  		<result column="PASSWORD" property="password"/>
+  		<result column="NAME" property="name"/>
+  		<result column="EMAIL" property="email"/>
+  		<result column="PHONE" property="phone"/>
+  		<result column="ADDRESS" property="address"/>
+  		<!-- 1: N -->
+  		<collection property="dtos" javaType="java.util.List" ofType="AccountDTO">
+  			<id column="ACCOUNTNUMBER" property="accountNumber" />
+  			<result column="BOOKNUMBER" property="bookNumber"/>
+  			<result column="ACCOUNTDATE" property="accountDate"/>
+  			<result column="ACCOUNTBALANCE" property="accountBalance"/>
+  		</collection>
+  	
+  	</resultMap>
+  	
   	
   	<update id="update" parameterType="MemberDTO">
   		UPDATE MEMBER SET 

@@ -1,5 +1,9 @@
 package com.winter.app.members;
 
+import java.util.List;
+
+import com.winter.app.accounts.AccountDTO;
+
 public class MemberDTO {
 	private String userName;
 	private String password;
@@ -7,6 +11,15 @@ public class MemberDTO {
 	private String email;
 	private String phone;
 	private String address;
+	private List<AccountDTO> dtos;
+
+	public List<AccountDTO> getDtos() {
+		return dtos;
+	}
+
+	public void setDtos(List<AccountDTO> dtos) {
+		this.dtos = dtos;
+	}
 
 	public String getUserName() {
 		return userName;

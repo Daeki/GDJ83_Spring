@@ -14,15 +14,15 @@
 <div class="container-fluid mt-5">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
-			<h3>${member.member.userName}</h3>
-			<h3>${member.member.name}</h3>
-			<h3>${member.member.phone}</h3>
-			<h3>${member.member.email}</h3>
-			<h3>${member.member.address}</h3>
+			<h3>${member.userName}</h3>
+			<h3>${member.name}</h3>
+			<h3>${member.phone}</h3>
+			<h3>${member.email}</h3>
+			<h3>${member.address}</h3>
 			
 			<div>
 				<h3>계좌정보</h3>
-				<c:forEach items="${member.accounts}" var="ac">
+				<c:forEach items="${member.dtos}" var="ac">
 					<h3>${ac.accountNumber} : ${ac.accountBalance}</h3>
 				</c:forEach>
 			</div>

@@ -1,7 +1,5 @@
 package com.winter.app.members;
 
-import java.util.Map;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -58,9 +56,9 @@ public class MemberController {
 		}
 
 		// memberDTO = memberService.login(memberDTO);
-		Map<String, Object> map = memberService.login(memberDTO);
-		if (map != null) {
-			session.setAttribute("member", map);
+		memberDTO = memberService.login(memberDTO);
+		if (memberDTO != null) {
+			session.setAttribute("member", memberDTO);
 		} else {
 
 		}
