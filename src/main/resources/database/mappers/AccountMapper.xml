@@ -9,4 +9,10 @@
   		VALUES(#{accountNumber}, #{bookNumber}, #{userName}, SYSDATE, 0)
   	</insert>
   	
+  	<select id="list" parameterType="MemberDTO" resultType="AccountDTO">
+  		SELECT ACCOUNTNUMBER, ACCOUNTBALANCE 
+  		FROM ACCOUNT
+  		WHERE USERNAME=#{userName}
+  	</select>
+  	
   </mapper>

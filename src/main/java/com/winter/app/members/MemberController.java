@@ -1,5 +1,7 @@
 package com.winter.app.members;
 
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -55,9 +57,10 @@ public class MemberController {
 			response.addCookie(cookie);
 		}
 
-		memberDTO = memberService.login(memberDTO);
-		if (memberDTO != null) {
-			session.setAttribute("member", memberDTO);
+		// memberDTO = memberService.login(memberDTO);
+		Map<String, Object> map = memberService.login(memberDTO);
+		if (map != null) {
+			session.setAttribute("member", map);
 		} else {
 
 		}
@@ -76,9 +79,9 @@ public class MemberController {
 
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public void mypage(HttpSession session, Model model) throws Exception {
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		memberDTO = memberService.login(memberDTO);
-		model.addAttribute("member", memberDTO);
+		// MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		// memberDTO = memberService.login(memberDTO);
+		// model.addAttribute("member", memberDTO);
 
 	}
 
