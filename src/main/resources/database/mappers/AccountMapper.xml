@@ -10,12 +10,12 @@
   	</insert>
   	
   	<select id="detail" parameterType="AccountDTO" resultMap="detailResult">
-  		SELECT 
+  		SELECT A.*, B.*
 		FROM ACCOUNT A
 			 INNER JOIN
 			 BANKBOOK B
 			 ON A.BOOKNUMBER = B.BOOKNUMBER
-		WHERE A.ACCOUNTNUMBER=?
+		WHERE A.ACCOUNTNUMBER=#{accountNumber}
   	
   	</select>
   	
