@@ -5,21 +5,43 @@
 
   <mapper namespace="com.winter.app.trades.TradeDAO">
   		<insert id="add" parameterType="TradeDTO">
+  			<!-- tradeIO 가 0이면 입금, 1이면 출금 -->
   			INSERT INTO TRADE 
   				(TRADENUM, TRADEDATE, TRADEAMOUNT, TRADEBALANCE, TRADEIO, ACCOUNTNUMBER)
   			VALUES
   				(
   					TRADE_SEQ.NEXTVAL, SYSDATE, #{tradeAmount}, 
-  					(SELECT ACCOUNTBALANCE FROM ACCOUNT WHERE ACCOUNTNUMBER=#{accountNumber})+#{tradeAmount},
-  					#{tradeIO},
-  					#{accountNumber}	
+  					
+  					<choose>
+  						<when test="tradeIO == '0'">
+	  					(SELECT ACCOUNTBALANCE FROM ACCOUNT WHERE ACCOUNTNUMBER=#{receiveNumber})+#{tradeAmount},
+  						#{tradeIO},
+  						#{receiveNumber}	
+  						</when>
+  						
+  						<otherwise>
+  	  					(SELECT ACCOUNTBALANCE FROM ACCOUNT WHERE ACCOUNTNUMBER=#{accountNumber})-#{tradeAmount},
+  						#{tradeIO},
+  						#{accountNumber}						
+  						
+  						</otherwise>
+  					</choose>
   				
   				)
   		</insert>
   		
   		<update id="update" parameterType="TradeDTO">
-  			UPDATE ACCOUNT SET ACCOUNTBALANCE=ACCOUNTBALANCE+#{tradeAmount}
-  			WHERE ACCOUNTNUMBER=#{accountNumber}
+  			<!-- tradeIO 가 0이면 입금, 1이면 출금 -->
+  			UPDATE ACCOUNT SET 
+  			<if test="tradeIO==0">
+	  			ACCOUNTBALANCE=ACCOUNTBALANCE+#{tradeAmount}
+	  			WHERE ACCOUNTNUMBER=#{receiveNumber}
+  			</if>
+  			
+  			<if test="tradeIO==1">
+  				ACCOUNTBALANCE=ACCOUNTBALANCE-#{tradeAmount}
+	  			WHERE ACCOUNTNUMBER=#{accountNumber}
+  			</if>
   		</update>
   
   	
