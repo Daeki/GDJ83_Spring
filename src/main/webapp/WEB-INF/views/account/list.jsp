@@ -17,9 +17,9 @@
 			<div>
 				<a href="list?accountNumber=${param.accountNumber}&order=1">과거순으로</a>			
 				<a href="list?accountNumber=${param.accountNumber}&order=0">최신순으로</a>
-				<a href="list?accountNumber=${param.accountNumber}&order=0">입금만</a>
-				<a href="list?accountNumber=${param.accountNumber}&order=0">출금만</a>
-				<a href="list?accountNumber=${param.accountNumber}&order=0">입금/출금</a>
+				<a href="list?accountNumber=${param.accountNumber}&io=0">입금만</a>
+				<a href="list?accountNumber=${param.accountNumber}&io=1">출금만</a>
+				<a href="list?accountNumber=${param.accountNumber}">입금/출금</a>
 			</div>
 		
 			<table class="table table-hover">

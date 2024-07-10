@@ -6,6 +6,16 @@ public class ListOption {
 
 	private Integer order; // 0 desc, 1 asc
 
+	private Integer io;// 0 입금, 1 출금, 그외 전체
+
+	public Integer getIo() {
+		return io;
+	}
+
+	public void setIo(Integer io) {
+		this.io = io;
+	}
+
 	public Long getAccountNumber() {
 		return accountNumber;
 	}

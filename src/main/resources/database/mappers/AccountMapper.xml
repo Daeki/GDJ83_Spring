@@ -74,7 +74,19 @@
   		
   		<select id="list" parameterType="ListOption" resultType="TradeDTO">
   			SELECT * FROM TRADE 
-  			WHERE ACCOUNTNUMBER =#{accountNumber} 
+  			WHERE ACCOUNTNUMBER =#{accountNumber}
+  				<choose>
+  					<when test="io==0">
+  						AND
+  				  		TRADEIO=0
+  					</when>
+  					<when test="io==1">
+	  					AND
+	  				  TRADEIO=1
+  					</when>
+  				</choose>
+  				 
+  			
   			ORDER BY TRADEDATE 
   			<choose>
   				<when test="order == 1">
