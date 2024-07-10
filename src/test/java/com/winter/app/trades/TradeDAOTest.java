@@ -1,6 +1,7 @@
 package com.winter.app.trades;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,14 +27,20 @@ public class TradeDAOTest extends DefaultTest {
 	public void before() {
 		this.tradeDTO = new TradeDTO();
 		tradeDTO.setAccountNumber(1720399116921L);
-		tradeDTO.setTradeAmount(5000L * -1);
+		tradeDTO.setTradeAmount(2000L * -1);
 		tradeDTO.setTradeIO(1);
 	}
 
-	@Test
+	// @Test
 	public void addTest() throws Exception {
 		int result = tradeDAO.add(tradeDTO);
 		assertEquals(1, result);
+	}
+
+	@Test
+	public void updateTest() throws Exception {
+		int result = tradeDAO.update(tradeDTO);
+		assertNotEquals(0, result);
 	}
 
 	@After

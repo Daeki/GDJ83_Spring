@@ -16,6 +16,11 @@
   				
   				)
   		</insert>
+  		
+  		<update id="update" parameterType="TradeDTO">
+  			UPDATE ACCOUNT SET ACCOUNTBALANCE=ACCOUNTBALANCE+#{tradeAmount}
+  			WHERE ACCOUNTNUMBER=#{accountNumber}
+  		</update>
   
   	
   </mapper>

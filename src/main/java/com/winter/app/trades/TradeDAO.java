@@ -16,4 +16,8 @@ public class TradeDAO {
 		return sqlSession.insert(NAMESPACE + "add", tradeDTO);
 	}
 
+	public int update(TradeDTO tradeDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "update", tradeDTO);
+	}
+
 }
