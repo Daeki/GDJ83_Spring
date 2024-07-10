@@ -17,11 +17,11 @@
 			<form method="post">
 				<div class="mb-3">
     	            <label for="userName" class="form-label">ID</label>
-                    <input type="text" class="form-control" value="${id}" id="userName" name="userName">
+                    <input type="text" class="form-control" value="goodee" id="userName" name="userName">
                 </div>
                 <div class="mb-3">
                      <label for="password" class="form-label">PASSWORD</label>
-                     <input type="password" class="form-control" id="password" name="password">
+                     <input type="password" class="form-control" id="password" value="pwpw" name="password">
                  </div>
                  
                  <div class="mb-3 form-check">

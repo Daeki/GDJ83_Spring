@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.winter.app.DefaultTest;
+import com.winter.app.accounts.TradeDTO;
 
 public class TradeDAOTest extends DefaultTest {
 

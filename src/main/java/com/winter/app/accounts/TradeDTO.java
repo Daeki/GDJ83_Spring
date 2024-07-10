@@ -1,4 +1,4 @@
-package com.winter.app.trades;
+package com.winter.app.accounts;
 
 import java.sql.Date;
 

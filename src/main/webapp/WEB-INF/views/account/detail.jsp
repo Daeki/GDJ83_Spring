@@ -26,6 +26,7 @@
 		
 				
 		<a href="./transfer?accountNumber=${dto.accountNumber}">이체</a>
+		<a href="./list?accountNumber=${dto.accountNumber}&order=0">내역조회</a>
 	</div>
 	
 </div>
