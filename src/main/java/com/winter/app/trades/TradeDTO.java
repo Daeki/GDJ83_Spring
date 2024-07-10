@@ -21,6 +21,17 @@ public class TradeDTO {
 	// 계좌번호
 	private Long accountNumber;
 
+	// 받는계좌번호
+	private Long receiveNumber;
+
+	public Long getReceiveNumber() {
+		return receiveNumber;
+	}
+
+	public void setReceiveNumber(Long receiveNumber) {
+		this.receiveNumber = receiveNumber;
+	}
+
 	public Long getTradeNum() {
 		return tradeNum;
 	}

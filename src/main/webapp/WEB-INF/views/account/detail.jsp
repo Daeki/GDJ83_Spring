@@ -25,7 +25,7 @@
 		</div>
 		
 				
-		<a href="./transfer">이체</a>
+		<a href="./transfer?accountNumber=${dto.accountNumber}">이체</a>
 	</div>
 	
 </div>

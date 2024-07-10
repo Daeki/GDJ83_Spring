@@ -9,11 +9,10 @@ public class TradeService {
 	@Autowired
 	private TradeDAO tradeDAO;
 
-	public void trade() throws Exception {
+	public int trade(TradeDTO tradeDTO) throws Exception {
 		// 1번계좌에서 5000을 1720399116921계좌로 이체
-		TradeDTO tradeDTO = new TradeDTO();
-		tradeDTO.setAccountNumber(1L);
-		tradeDTO.setTradeAmount(5000L * -1);
+
+		tradeDTO.setTradeAmount(tradeDTO.getTradeAmount() * -1);
 		tradeDTO.setTradeIO(1);
 		// 거래내역 추가
 		int result = tradeDAO.add(tradeDTO);
@@ -21,7 +20,7 @@ public class TradeService {
 		result = tradeDAO.update(tradeDTO);
 
 		// 받는 DTO로 수정
-		tradeDTO.setAccountNumber(1720399116921L);
+		tradeDTO.setAccountNumber(tradeDTO.getReceiveNumber());
 		tradeDTO.setTradeAmount(tradeDTO.getTradeAmount() * -1);
 		tradeDTO.setTradeIO(0);
 
@@ -30,6 +29,7 @@ public class TradeService {
 		// 받는 계좌내용을 업데이트
 		result = tradeDAO.update(tradeDTO);
 
+		return result;
 	}
 
 }
