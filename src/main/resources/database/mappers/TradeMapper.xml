@@ -13,7 +13,7 @@
   					TRADE_SEQ.NEXTVAL, SYSDATE, #{tradeAmount}, 
   					
   					<choose>
-  						<when test="tradeIO == '0'">
+  						<when test="tradeIO == 0">
 	  					(SELECT ACCOUNTBALANCE FROM ACCOUNT WHERE ACCOUNTNUMBER=#{receiveNumber})+#{tradeAmount},
   						#{tradeIO},
   						#{receiveNumber}	
