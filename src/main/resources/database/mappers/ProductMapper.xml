@@ -5,24 +5,51 @@
 
   <mapper namespace="com.winter.app.products.ProductDAO">
   
-  	<select id="getTotalCount" resultType="java.lang.Long">
+  	<select id="getTotalCount" resultType="java.lang.Long" parameterType="Pager">
   		SELECT COUNT(BOOKNUMBER) FROM BANKBOOK
+			<where>
+				BOOKNUMBER > 0
+							
+				<choose>
+				<when test="kind=='k2'">
+				AND BOOKDETAIL LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+				AND BOOKNAME LIKE '%'||#{search}||'%'
+				</otherwise>
+				</choose>
+					
+			</where>
+  		
   	</select>
   
   	<select id="getList" resultType="ProductDTO" parameterType="Pager">
-  		<![CDATA[
   		SELECT * FROM
 			(
 				SELECT ROWNUM R, B.* FROM
 					(
 						SELECT * 
 						FROM BANKBOOK
+						<where>
+							BOOKNUMBER > 0
+							
+							<choose>
+								<when test="kind=='k2'">
+								AND BOOKDETAIL LIKE '%'||#{search}||'%'
+								</when>
+								<otherwise>
+								AND BOOKNAME LIKE '%'||#{search}||'%'
+								</otherwise>
+							</choose>
+							
+
+						</where>
 						ORDER BY BOOKNUMBER DESC
 					) B
 			)
 		
 		WHERE R BETWEEN #{startRow} AND #{lastRow} 
-		 ]]>
+  		<![CDATA[ ]]>
   	</select>
   	
   	<select id="getDetail" resultType="ProductDTO" parameterType="ProductDTO">

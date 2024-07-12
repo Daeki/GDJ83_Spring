@@ -16,8 +16,8 @@ public class ProductDAO {
 
 	private final String NAMESPACE = "com.winter.app.products.ProductDAO.";
 
-	public Long getTotalCount() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getTotalCount");
+	public Long getTotalCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
 	}
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {

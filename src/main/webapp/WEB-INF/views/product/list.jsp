@@ -14,6 +14,35 @@
 <div class="container-fluid mt-5">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
+		
+			<!-- 검색어 입력 폼 -->
+			<form action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center">
+			  
+			  <div class="col-12">
+			    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+			    <select name="kind" class="form-select" id="inlineFormSelectPref">
+			      <option value="k1" >상품명</option>
+			      <option value="k2">상품내용</option>
+			    </select>
+			  </div>
+			  
+			  <div class="col-12">
+			    <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+			    <div class="input-group">      
+			      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+			    </div>
+			  </div>
+			
+			
+			  
+			
+			  <div class="col-12">
+			    <button type="submit" class="btn btn-primary">Submit</button>
+			  </div>
+			</form>			
+		
+		
+		
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -38,18 +67,18 @@
 			  <ul class="pagination">
 			  
 			    <li class="page-item ${map.pre?'':'disabled'}">
-			      <a class="page-link" href="./list?page=${map.startNum-1}" aria-label="Previous">
+			      <a class="page-link" href="./list?page=${map.startNum-1}&kind=${map.kind}&search=${map.search}" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
 			  
 			    <!-- for(int i=0;i<=10;i=i+2) -->
 			    <c:forEach begin="${map.startNum}" end="${map.lastNum}" step="1" var="i">
-			    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+			    <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${map.kind}&search=${map.search}">${i}</a></li>
 			    </c:forEach>
 			    
 			    <li class="page-item ${map.next?'':'disabled'}">
-			      <a class="page-link" href="./list?page=${map.lastNum+1}" aria-label="Next">
+			      <a class="page-link" href="./list?page=${map.lastNum+1}&kind=${map.kind}&search=${map.search}" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>
