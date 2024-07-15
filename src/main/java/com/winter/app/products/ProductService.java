@@ -1,9 +1,6 @@
 package com.winter.app.products;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,51 +12,19 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 
-	public Map<String, Object> getList(Long page, String kind, String search) throws Exception {
+	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// page가 1 2 3 4
 		// 첫번째 숫자 1 11 21 31
 		// 두번째 숫자 10 20 30 40
 		// 5
-		if (page == null) {
-			page = 1L;
-		}
 
-		if (page < 1) {
-			page = 1L;
-		}
+		pager.makeRow();
 
-		if (search == null) {
-			search = "";
-		}
+		long totalCount = productDAO.getTotalCount(pager);// 100 , 130, 121~129 , 131~139
 
-		long perPage = 10L;
-		long startRow = (page - 1) * perPage + 1;
-		long lastRow = page * perPage;
+		pager.makeNum(totalCount);
 
-		List<Long> ar = new ArrayList<Long>();
-		ar.add(startRow);
-		ar.add(lastRow);
-
-		Map<String, Long> map = new HashMap<String, Long>();
-		map.put("startRow", startRow);
-		map.put("lastRow", lastRow);
-
-		Pager pager = new Pager();
-		pager.setStartRow(startRow);
-		pager.setLastRow(lastRow);
-		pager.setKind(kind);
-		pager.setSearch(search);
-
-		long totalCount = productDAO.getTotalCount(pager);// 120 , 130, 121~129 , 131~139
-
-		// Map<String, Object> map2 = new HashMap<String, Object>();
-		Map<String, Object> map2 = pager.makeNum(totalCount, perPage, page);
-
-		map2.put("list", productDAO.getList(pager));
-
-		map2.put("kind", kind);
-		map2.put("search", search);
-		return map2;
+		return productDAO.getList(pager);
 	}
 
 	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {

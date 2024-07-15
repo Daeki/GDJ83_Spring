@@ -1,21 +1,33 @@
 package com.winter.app.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Pager {
 
 	// 컬럼종류
 	private String kind;
 	// 검색어
 	private String search;
+	// 페이지 번호
+	private Long page;
 
 	private Long startRow;
 	private Long lastRow;
 
-	// 페이징 처리 하는 메서드
+	// ------------------------
+	private Long startNum;
+	private Long lastNum;
+	private boolean pre;
+	private boolean next;
+	private long perPage = 10L;
 
-	public Map<String, Object> makeNum(long totalCount, long perPage, long page) throws Exception {
+	// rownum을 계산하는 메서드
+	public void makeRow() throws Exception {
+		this.startRow = (this.getPage() - 1) * perPage + 1;
+		this.lastRow = this.getPage() * perPage;
+
+	}
+
+	// 페이징 처리 하는 메서드
+	public void makeNum(long totalCount) throws Exception {
 
 		// 1. 총갯수를 이용해서 총 페이지수 구하기
 		long totalPage = totalCount / perPage;
@@ -50,12 +62,12 @@ public class Pager {
 		// curBlock 1 2 3
 		// start 1 6 11
 		// last 5 10 15
-		long startNum = (curBlock - 1) * perBlock + 1;
-		long lastNum = curBlock * perBlock;
+		this.startNum = (curBlock - 1) * perBlock + 1;
+		this.lastNum = curBlock * perBlock;
 
 		// 5. 이전블럭, 다음 블럭 유무 판단
-		boolean pre = true; // true면 이전블럭이 존재, false면 이전블럭이 X
-		boolean next = true;// true면 다음블럭이 존재, false면 다음블럭이 X
+		this.pre = true; // true면 이전블럭이 존재, false면 이전블럭이 X
+		this.next = true;// true면 다음블럭이 존재, false면 다음블럭이 X
 		if (curBlock == 1) {
 			pre = false;
 		}
@@ -66,16 +78,57 @@ public class Pager {
 			lastNum = totalPage;
 		}
 
-		Map<String, Object> map = new HashMap<String, Object>();
+	}
 
-		map.put("totalPage", totalPage);
-		map.put("startNum", startNum);
-		map.put("lastNum", lastNum);
-		map.put("pre", pre);
-		map.put("next", next);
+	public long getPerPage() {
+		return perPage;
+	}
 
-		return map;
+	public void setPerPage(long perPage) {
+		this.perPage = perPage;
+	}
 
+	public Long getStartNum() {
+		return startNum;
+	}
+
+	public void setStartNum(Long startNum) {
+		this.startNum = startNum;
+	}
+
+	public Long getLastNum() {
+		return lastNum;
+	}
+
+	public void setLastNum(Long lastNum) {
+		this.lastNum = lastNum;
+	}
+
+	public boolean isPre() {
+		return pre;
+	}
+
+	public void setPre(boolean pre) {
+		this.pre = pre;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+
+	public Long getPage() {
+		if (this.page == null || this.page < 1) {
+			this.page = 1L;
+		}
+		return page;
+	}
+
+	public void setPage(Long page) {
+		this.page = page;
 	}
 
 	public String getKind() {
@@ -87,6 +140,9 @@ public class Pager {
 	}
 
 	public String getSearch() {
+		if (this.search == null) {
+			this.search = "";
+		}
 		return search;
 	}
 
