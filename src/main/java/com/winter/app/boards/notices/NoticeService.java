@@ -2,54 +2,48 @@ package com.winter.app.boards.notices;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import com.winter.app.boards.BoardDAO;
 import com.winter.app.boards.BoardDTO;
+import com.winter.app.boards.BoardService;
 import com.winter.app.util.Pager;
 
-@Repository
-public class NoticeDAO implements BoardDAO {
+@Service
+public class NoticeService implements BoardService {
 
 	@Autowired
-	private SqlSession sqlSession;
-
-	private final String NAMESPACE = "com.winter.app.boards.notices.NoticeDAO.";
-
-	@Override
-	public Long getTotalCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
-	}
+	@Qualifier("noticeDAO")
+	private BoardDAO boardDAO;
 
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE + "list", pager);
+		return null;
 	}
 
 	@Override
 	public int add(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(NAMESPACE + "add", boardDTO);
+		return 0;
 	}
 
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(NAMESPACE + "update", boardDTO);
+		return 0;
 	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.delete(NAMESPACE + "delete", boardDTO);
+		return 0;
 	}
 
 	@Override
-	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
+	public BoardDTO detail() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
