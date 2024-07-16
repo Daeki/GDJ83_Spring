@@ -83,6 +83,11 @@
   		UPDATE QNA SET STEP=STEP+1
   		WHERE REF=#{ref} AND STEP>#{step}
   	</update>
+  	
+  	<update id="update" parameterType="QnaDTO">
+  		UPDATE QNA SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents}, UPDATEDATE=SYSDATE
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>
   
   	
   </mapper>

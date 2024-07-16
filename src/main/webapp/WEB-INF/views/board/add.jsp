@@ -24,12 +24,12 @@
 				
 				<div class="mb-3">
 					<label for="boardTitle" class="form-label">제목</label>
-					<input type="text" name="boardTitle"  class="form-control" id="boardTitle">
+					<input type="text" name="boardTitle" value="${boardDTO.boardTitle}"  class="form-control" id="boardTitle">
 				</div>
 				
 				<div class="mb-3">
 					<label for="boardContents" class="form-label">내용</label>
-				  	<textarea name="boardContents" class="form-control" id="boardContents" rows="3"></textarea>
+				  	<textarea name="boardContents" class="form-control" id="boardContents" rows="3">${boardDTO.boardContents}</textarea>
 				</div>
 				
 				<div class="mb-3">
