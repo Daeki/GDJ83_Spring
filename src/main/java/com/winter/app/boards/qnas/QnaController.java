@@ -65,4 +65,18 @@ public class QnaController {
 		return "board/update";
 	}
 
+	@GetMapping("reply")
+	public String reply(QnaDTO qnaDTO, Model model) throws Exception {
+		model.addAttribute("boardDTO", qnaDTO);
+		return "board/add";
+	}
+
+	@PostMapping("reply")
+	public String reply(QnaDTO qnaDTO, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		qnaDTO.setBoardWriter(memberDTO.getUserName());
+		int result = qnaService.reply(qnaDTO);
+		return "redirect:./list";
+	}
+
 }

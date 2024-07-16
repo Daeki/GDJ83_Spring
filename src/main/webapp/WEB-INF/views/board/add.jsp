@@ -16,6 +16,7 @@
 		<div class="col-md-6">
 			<h1>${board} 작성</h1>
 			<form method="post">
+				<input type="hidden" value="${boardDTO.boardNum}" name="boardNum">
 				<div class="mb-3">
 					<label for="boardWriter" class="form-label">작성자</label>
 					<input type="text" name="boardWriter" readonly value="${member.userName}"  class="form-control" id="boardWriter">
