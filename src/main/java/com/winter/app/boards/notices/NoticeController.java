@@ -32,9 +32,11 @@ public class NoticeController {
 		return "board/list";
 	}
 
-	@RequestMapping(value = "detail", method = RequestMethod.POST)
-	public void detail(NoticeDTO noticeDTO) throws Exception {
-		BoardDTO boardDTO = noticeService.detail();
+	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	public String detail(NoticeDTO noticeDTO, Model model) throws Exception {
+		BoardDTO boardDTO = noticeService.detail(noticeDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		return "board/detail";
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)

@@ -31,7 +31,7 @@
 					<tr>
 						<td>${boardDTO.boardNum}</td>
 						<td>${boardDTO.boardTitle}</td>
-						<td>${boardDTO.boardNum}</td>
+						<td>${boardDTO.boardWriter}</td>
 						<td>${boardDTO.createDate}</td>
 						<td>${boardDTO.updateDate}</td>
 						<td>${boardDTO.boardHit}</td>
@@ -44,9 +44,13 @@
 			</table>
 			<div class="row">
 				<div >
-					<a href="../account/add?bookNumber=${dto.bookNumber}" class="btn btn-info">상품가입</a>
-					<a href="./update?bookNumber=${dto.bookNumber}" class="btn btn-danger">상품수정</a>
-					<a href="./delete?bookNumber=${dto.bookNumber}" class="btn btn-primary">상품삭제</a>
+					<c:if test="${board ne 'Notice'}">
+					<a href="./reply?boardNum=${boardDTO.boardNum}" class="btn btn-info">답글</a>
+					</c:if>
+					<c:if test="${boardDTO.boardWriter eq member.userName}">
+					<a href="./update?boardNum=${boardDTO.boardNum}" class="btn btn-danger">수정</a>
+					<a href="./delete?boardNum=${boardDTO.boardNum}" class="btn btn-primary">삭제</a>
+					</c:if>
 				</div>
 			</div>
 		</div>

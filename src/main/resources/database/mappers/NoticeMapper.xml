@@ -60,5 +60,8 @@
   		)	
   	
   	</insert>  	
+  	<select id="detail" parameterType="NoticeDTO" resultType="NoticeDTO">
+  		SELECT * FROM NOTICE WHERE BOARDNUM=#{boardNum}
+  	</select>  	
   	
   </mapper>
