@@ -46,6 +46,20 @@
 		  	)
   		WHERE R BETWEEN #{startRow} AND #{lastRow}
   	</select>
+  	
+  	<insert id="add" parameterType="QnaDTO">
+  		INSERT INTO QNA 
+  		(
+  			BOARDNUM, BOARDWRITER, BOARDTITLE, BOARDCONTENTS, CREATEDATE, 
+  			UPDATEDATE, BOARDHIT, BOARDCATEGORY, REF, STEP, DEPTH 
+  		)
+  		VALUES
+  		(
+  			BOARD_SEQ.NEXTVAL, #{boardWriter}, #{boardTitle}, #{boardContents}, SYSDATE,
+  			SYSDATE, 0, 'Q', BOARD_SEQ.CURRVAL, 0, 0
+  		)	
+  	
+  	</insert>
   
   	
   </mapper>

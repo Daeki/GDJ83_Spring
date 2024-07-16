@@ -14,7 +14,7 @@
 <div class="container-fluid mt-5">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
-		
+			<h1>${board}</h1>
 			<!-- 검색어 입력 폼 -->
 			<form action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center">
 			  

@@ -13,7 +13,31 @@
 
 <div class="container-fluid mt-5">
 	<div class="row justify-content-center">
-		<h1>Board Add</h1>
+		<div class="col-md-6">
+			<h1>${board} 작성</h1>
+			<form method="post">
+				<div class="mb-3">
+					<label for="boardWriter" class="form-label">작성자</label>
+					<input type="text" name="boardWriter" readonly value="${member.userName}"  class="form-control" id="boardWriter">
+				</div>
+				
+				<div class="mb-3">
+					<label for="boardTitle" class="form-label">제목</label>
+					<input type="text" name="boardTitle"  class="form-control" id="boardTitle">
+				</div>
+				
+				<div class="mb-3">
+					<label for="boardContents" class="form-label">내용</label>
+				  	<textarea name="boardContents" class="form-control" id="boardContents" rows="3"></textarea>
+				</div>
+				
+				<div class="mb-3">
+					<button class="btn btn-primary">등록</button>
+				</div>
+				
+			</form>	
+		</div>
+	
 	</div>
 	
 </div>

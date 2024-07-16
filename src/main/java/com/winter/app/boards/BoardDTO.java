@@ -10,7 +10,7 @@ public class BoardDTO {
 	private Date updateCreate;
 	private Long boardHit;
 	private String boardContents;
-	private Integer boardCategory;
+	private String boardCategory;
 
 	public Long getBoardNum() {
 		return boardNum;
@@ -68,11 +68,11 @@ public class BoardDTO {
 		this.boardContents = boardContents;
 	}
 
-	public Integer getBoardCategory() {
+	public String getBoardCategory() {
 		return boardCategory;
 	}
 
-	public void setBoardCategory(Integer boardCategory) {
+	public void setBoardCategory(String boardCategory) {
 		this.boardCategory = boardCategory;
 	}
 
