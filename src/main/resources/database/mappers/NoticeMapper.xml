@@ -64,4 +64,9 @@
   		SELECT * FROM NOTICE WHERE BOARDNUM=#{boardNum}
   	</select>  	
   	
+  	<update id="update" parameterType="NoticeDTO">
+  		UPDATE NOTICE SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents}, UPDATEDATE=SYSDATE
+  		WHERE BOARDNUM=#{boardNum}
+  	</update>  	
+  	
   </mapper>

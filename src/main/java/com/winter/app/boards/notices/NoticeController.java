@@ -50,4 +50,18 @@ public class NoticeController {
 		return "redirect:./list";
 
 	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(NoticeDTO noticeDTO, Model model) throws Exception {
+		BoardDTO boardDTO = noticeService.detail(noticeDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		return "board/add";
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(NoticeDTO noticeDTO) throws Exception {
+		int result = noticeService.update(noticeDTO);
+		return "redirect:./list";
+
+	}
 }

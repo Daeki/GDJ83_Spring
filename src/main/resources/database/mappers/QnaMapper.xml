@@ -76,7 +76,7 @@
   	</insert>
   	
   	<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">
-  		SELECT * FROM QNA WHERE BOARDNUM=#{boardNum}
+  		SELECT * FROM QNA WHERE BOARDNUM=#{boardNum} AND DEL=0
   	</select>
   	
   	<update id="replyUpdate" parameterType="QnaDTO">
@@ -88,6 +88,10 @@
   		UPDATE QNA SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents}, UPDATEDATE=SYSDATE
   		WHERE BOARDNUM=#{boardNum}
   	</update>
+  	
+  	<delete id="delete" parameterType="QnaDTO">
+  		UPDATE QNA SET DEL=1 WHERE boardNum=#{boardNum}
+  	</delete>
   
   	
   </mapper>
