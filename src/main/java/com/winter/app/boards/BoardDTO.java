@@ -7,7 +7,7 @@ public class BoardDTO {
 	private String boardTitle;
 	private String boardWriter;
 	private Date createDate;
-	private Date updateCreate;
+	private Date updateDate;
 	private Long boardHit;
 	private String boardContents;
 	private String boardCategory;
@@ -44,12 +44,12 @@ public class BoardDTO {
 		this.createDate = createDate;
 	}
 
-	public Date getUpdateCreate() {
-		return updateCreate;
+	public Date getUpdateDate() {
+		return updateDate;
 	}
 
-	public void setUpdateCreate(Date updateCreate) {
-		this.updateCreate = updateCreate;
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public Long getBoardHit() {

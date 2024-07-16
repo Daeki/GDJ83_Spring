@@ -19,6 +19,6 @@ public interface BoardService {
 	public int delete(BoardDTO boardDTO) throws Exception;
 
 	// detail
-	public BoardDTO detail() throws Exception;
+	public BoardDTO detail(BoardDTO boardDTO) throws Exception;
 
 }

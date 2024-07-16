@@ -60,6 +60,10 @@
   		)	
   	
   	</insert>
+  	
+  	<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">
+  		SELECT * FROM QNA WHERE BOARDNUM=#{boardNum}
+  	</select>
   
   	
   </mapper>

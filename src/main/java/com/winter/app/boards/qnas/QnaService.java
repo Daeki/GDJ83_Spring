@@ -43,9 +43,9 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public BoardDTO detail() throws Exception {
+	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return qnaDAO.detail(boardDTO);
 	}
 
 }

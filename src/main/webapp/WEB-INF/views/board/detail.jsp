@@ -13,7 +13,44 @@
 
 <div class="container-fluid mt-5">
 	<div class="row justify-content-center">
-		<h1>Board Detail</h1>
+		<div class="col-md-6">
+			<h1>${board} Detail</h1>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>수정일</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<td>${boardDTO.boardNum}</td>
+						<td>${boardDTO.boardTitle}</td>
+						<td>${boardDTO.boardNum}</td>
+						<td>${boardDTO.createDate}</td>
+						<td>${boardDTO.updateDate}</td>
+						<td>${boardDTO.boardHit}</td>
+					</tr>
+					
+					<tr>
+						<td colspan="6">${boardDTO.boardContents}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="row">
+				<div >
+					<a href="../account/add?bookNumber=${dto.bookNumber}" class="btn btn-info">상품가입</a>
+					<a href="./update?bookNumber=${dto.bookNumber}" class="btn btn-danger">상품수정</a>
+					<a href="./delete?bookNumber=${dto.bookNumber}" class="btn btn-primary">상품삭제</a>
+				</div>
+			</div>
+		</div>
+	
 	</div>
 	
 </div>
