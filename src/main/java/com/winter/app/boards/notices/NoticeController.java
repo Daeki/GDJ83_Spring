@@ -43,7 +43,9 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public void add(NoticeDTO noticeDTO) throws Exception {
+	public String add(NoticeDTO noticeDTO) throws Exception {
+		int result = noticeService.add(noticeDTO);
+		return "redirect:./list";
 
 	}
 }

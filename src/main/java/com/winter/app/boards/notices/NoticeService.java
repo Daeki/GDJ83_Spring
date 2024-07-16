@@ -21,13 +21,17 @@ public class NoticeService implements BoardService {
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		// 1. rownum 계산
+		pager.makeRow();
+		// 2. pageing 계산
+		pager.makeNum(boardDAO.getTotalCount(pager));
+		return boardDAO.list(pager);
 	}
 
 	@Override
 	public int add(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return boardDAO.add(boardDTO);
 	}
 
 	@Override
