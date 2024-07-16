@@ -13,7 +13,89 @@
 
 <div class="container-fluid mt-5">
 	<div class="row justify-content-center">
-		<h1>Board List</h1>
+		<div class="col-md-6">
+		
+			<!-- 검색어 입력 폼 -->
+			<form action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center">
+			  
+			  <div class="col-12">
+			    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+			    <select name="kind" class="form-select" id="inlineFormSelectPref">
+			      <option value="title" >제목</option>
+			      <option value="contents">내용</option>
+			      <option value="writer">작성자</option>
+			    </select>
+			  </div>
+			  
+			  <div class="col-12">
+			    <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+			    <div class="input-group">      
+			      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+			    </div>
+			  </div>
+			
+			
+			  
+			
+			  <div class="col-12">
+			    <button type="submit" class="btn btn-primary">Submit</button>
+			  </div>
+			</form>			
+		
+		
+		
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<c:forEach items="${list}" var="dto">
+						<tr>
+							<td>${dto.boardNum}</td>
+							<td><a href="./detail?boardNum=${dto.boardNum}">${dto.boardTitle}</a></td>
+							<td>${dto.boardWriter}</td>
+							<td>${dto.createDate}</td>
+							<td>${dto.boardHit}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination">
+			  
+			    <li class="page-item ${pager.pre?'':'disabled'}">
+			      <a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			  
+			    <!-- for(int i=0;i<=10;i=i+2) -->
+			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1" var="i">
+			    <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+			    </c:forEach>
+			    
+			    <li class="page-item ${pager.next?'':'disabled'}">
+			      <a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
+			
+			<div class="row">
+				<div >
+					<a href="./add" class="btn btn-danger">글등록</a>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 </div>
