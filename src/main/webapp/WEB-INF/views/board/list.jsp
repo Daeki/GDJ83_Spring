@@ -23,6 +23,13 @@
 					<!-- 리스트 start -->
 					<div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                     	<div class="card-body p-0">
+                    		<div class="row px-2 py-2 align-items-center justify-content-end">
+		                        <div class="col-auto">
+									<a class="btn btn-outline-primary" href="add">
+										<h6 class="display-10 fw-bolder mb-0">글작성</h1>
+									</a>
+								</div>
+							</div>
                     		<div class="align-items-center justify-content-center">
                     			<div class="p-5">
 				                    <div class="row gx-5 justify-content-center">
@@ -41,7 +48,7 @@
 											  	<c:forEach items="${list}" var="list">
 												    <tr>
 												      <th scope="row">${list.boardNum}</th>
-												      <td>${list.boardTitle}</td>
+												      <td><a href="detail?boardNum=${list.boardNum}" class="btn">${list.boardTitle}</a></td>
 												      <td>${list.boardWriter}</td>
 												      <td>${list.createDate}</td>
 												      <td>${list.boardHit}</td>
