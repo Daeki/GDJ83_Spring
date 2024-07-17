@@ -1,125 +1,98 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
-</head>
-<body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-
-<div class="container-fluid mt-5">
-	<div class="row justify-content-center">
-		<div class="col-md-6">
-			<h1>${board}</h1>
-			<!-- 검색어 입력 폼 -->
-			<form action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center">
-			  
-			  <div class="col-12">
-			    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-			    <select name="kind" class="form-select" id="inlineFormSelectPref">
-			      <option value="title" >제목</option>
-			      <option value="contents">내용</option>
-			      <option value="writer">작성자</option>
-			    </select>
-			  </div>
-			  
-			  <div class="col-12">
-			    <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
-			    <div class="input-group">      
-			      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
-			    </div>
-			  </div>
+	<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+	<c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
+	</head>
+	<body class="d-flex flex-column h-100 bg-light">
+		<!-- main태그 footer 전까지 -->
+		<main class="flex-shrink-0">
+			<!-- 상단 메뉴바 start -->
+			<c:import url="/WEB-INF/views/template/navbar.jsp"></c:import>
+			<!-- 상단 메뉴바 end -->
 			
-			
-			  
-			
-			  <div class="col-12">
-			    <button type="submit" class="btn btn-primary">Submit</button>
-			  </div>
-			</form>			
-		
-		
-		
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회수</th>
-					</tr>
-				</thead>
-				
-				<tbody>
-					<c:forEach items="${list}" var="dto">
-						<tr>
-							<td>
-								<c:if test="${dto.del eq 0}">
-									${dto.boardNum}
-								</c:if>
-							
-							</td>
-							<td>
-							<c:choose>
-								<c:when test="${dto.del eq 0}">
-									<a href="./detail?boardNum=${dto.boardNum}">
-									<c:catch>
-									<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
-									</c:catch>
-									${dto.boardTitle}
-									</a>							
-								</c:when>
-								<c:otherwise>
-									삭제된 글 입니다
-								</c:otherwise>
-							</c:choose>
-							</td>
-							<td>${dto.boardWriter}</td>
-							<td>${dto.createDate}</td>
-							<td>${dto.boardHit}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
-			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			  
-			    <li class="page-item ${pager.pre?'':'disabled'}">
-			      <a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			  
-			    <!-- for(int i=0;i<=10;i=i+2) -->
-			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1" var="i">
-			    <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
-			    </c:forEach>
-			    
-			    <li class="page-item ${pager.next?'':'disabled'}">
-			      <a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
-			</nav>
-			
-			<div class="row">
-				<div >
-					<a href="./add" class="btn btn-danger">글등록</a>
+			<header class="py-5">
+                <div class="container px-5">
+                	<div class="text-center mb-5">
+                        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">${board} LIST</span></h1>
+                    </div>
+					<!-- 리스트 start -->
+					<div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                    	<div class="card-body p-0">
+                    		<div class="align-items-center justify-content-center">
+                    			<div class="p-5">
+				                    <div class="row gx-5 justify-content-center">
+				                        <div class="col-lg-11 col-xl-11 col-xxl-11">
+											<table class="table table-hover">
+											  <thead>
+											    <tr>
+											      <th scope="col">번호</th>
+											      <th scope="col">제목</th>
+											      <th scope="col">작성자</th>
+											      <th scope="col">날짜</th>
+											      <th scope="col">조회수</th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											  	<c:forEach items="${list}" var="list">
+												    <tr>
+												      <th scope="row">${list.boardNum}</th>
+												      <td>${list.boardTitle}</td>
+												      <td>${list.boardWriter}</td>
+												      <td>${list.createDate}</td>
+												      <td>${list.boardHit}</td>
+												    </tr>
+											    </c:forEach>
+											  </tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 리스트 end -->
 				</div>
-			</div>
-		</div>
-	</div>
+				
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				    <li class="page-item ${pager.pre?'':'disabled'}">
+				      <a class="page-link" href="list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a>
+				    </li>
+				    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1" var="i">
+				    <li class="page-item"><a class="page-link" href="list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+				    </c:forEach>
+				    <li class="page-item ${pager.next?'':'disabled'}" >
+				      <a class="page-link" href="list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a>
+				    </li>
+				  </ul>
+				</nav>
+				<div class="container">
+					<form action="list" method="GET" class="row gy-2 gx-3 align-items-center justify-content-center">
+						 <div class="col-auto">
+						   <input type="text" class="form-control" id="search" name="search" placeholder="검색어 입력하세요.">
+						 </div>
+						 <div class="col-auto">
+						   <select class="form-select" id="kind" name="kind">
+						     <option value="title">제목</option>
+						     <option value="contents">내용</option>
+						     <option value="writer">작성자</option>
+						   </select>
+						 </div>
+						 <div class="col-auto">
+						   <button type="submit" class="btn btn-primary">검색</button>
+						 </div>
+					</form>
+				</div>
 	
-</div>
-
-	
-<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
-</body>
+		
+		</main>
+		<!-- 하단 footer, js start -->
+		<c:import url="/WEB-INF/views/template/footer_js.jsp"></c:import>
+		<!-- 하단 footer, js end -->
+	</body>
 </html>
