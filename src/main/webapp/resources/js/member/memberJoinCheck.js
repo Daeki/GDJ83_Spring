@@ -16,7 +16,29 @@
  const phone = document.getElementById("phone");
  const address = document.getElementById("address");
 
+ const passwordCheck = document.getElementById("passwordCheck");
+ const pserror = document.getElementById("password-eqerror");
 
+ passwordCheck.addEventListener("change", function(){
+    if(password.value != passwordCheck.value){
+        passwordCheck.value="";
+        passwordCheck.focus();
+        pserror.innerHTML="password가 틀립니다.";
+    } else {
+        pserror.innerHTML="";
+        passworderror.innerHTML="";
+    }
+ })
+
+ password.addEventListener("change", function(){
+    if(password.value != passwordCheck.value){
+        pserror.innerHTML="password가 틀립니다.";
+        passwordCheck.focus();
+    } else {
+        pserror.innerHTML="";
+        passworderror.innerHTML="";
+    }
+ })
 
 
  
@@ -37,6 +59,36 @@
         password.focus();
         return;
     }
+
+    if(name.value==''){
+        name.innerHTML="이름 입력 하세요.";
+        name.focus();
+        return;
+    }
+
+    if(email.value==''){
+        email.innerHTML="email 입력 하세요.";
+        email.focus();
+        return;
+    }
+
+    if(phone.value==''){
+        phone.innerHTML="phone 입력 하세요.";
+        phone.focus();
+        return;
+    }
+
+    if(address.value==''){
+        address.innerHTML="address 입력 하세요.";
+        address.focus();
+        return;
+    }
+    
+    // if(checks){
+    //     joinForm.submit();
+    // } else {
+    //     alert('빈칸을 채우세요.');
+    // }
 
 
     //  let checks = true;
@@ -77,11 +129,6 @@
     //     passworderror.append(i);
     // }
 
-    // if(checks){
-    //     joinForm.submit();
-    // } else {
-    //     alert('빈칸을 채우세요.');
-    // }
 
 
 

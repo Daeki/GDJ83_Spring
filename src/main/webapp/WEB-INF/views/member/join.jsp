@@ -26,38 +26,40 @@
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
                                 <form id="joinForm" action="join" method="post">
-                                    <!-- Name input-->
+                                    <!-- ID 입력-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control ch" name="userName" id="userName" type="text" placeholder="Enter your ID..." data-sb-validations="required" />
                                         <label for="userName">ID</label>
-                                        <div class="invalid-feedback" data-sb-feedback="username:required">A ID is required.</div>
                                     </div>
-                                    <!-- password input --> 
+                                    <!-- 비밀번호 입력 --> 
                                     <div class="form-floating mb-3">
-                                        <input class="form-control ch" name="password" id="password" type="text" placeholder="Enter your password..." data-sb-validations="required" />
+                                        <input class="form-control ch" id="password" type="text" placeholder="Enter your password..." data-sb-validations="required" />
                                         <label for="password">Password</label>
-                                        <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
                                         <div id="password-error"></div>
                                     </div>
+                                    <!-- 비밀번호 확인 --> 
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control ch" name="password" id="passwordCheck" type="text" placeholder="Enter your password..." data-sb-validations="required" />
+                                        <label for="password">Password 확인</label>
+                                        <div id="password-eqerror"></div>
+                                    </div>
+                                    <!-- 이름 입력 -->
                                     <div class="form-floating mb-3">
                                         <input class="form-control ch" name="name" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                                         <label for="name">Full Name</label>
-                                        <div class="invalid-feedback" data-sb-feedback="name:required">A Name is required.</div>
                                     </div>
-                                    <!-- Email address input-->
+                                    <!-- Email 입력-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control ch" name="email" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
                                         <label for="email">Email address</label>
-                                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                                     </div>
-                                    <!-- Phone number input-->
+                                    <!-- 전화번호 입력-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control ch" name="phone" id="phone" type="tel" placeholder="010-456-7890" data-sb-validations="required" />
                                         <label for="phone">Phone number</label>
                                         <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
                                     </div>
-                                    <!-- address input-->
+                                    <!-- 주소 입력 -->
                                     <div class="form-floating mb-3">
                                         <textarea class="form-control ch" name="address" id="message" type="text" placeholder="Enter your address here..." style="height: 10rem" data-sb-validations="required"></textarea>
                                         <label for="address">Address</label>

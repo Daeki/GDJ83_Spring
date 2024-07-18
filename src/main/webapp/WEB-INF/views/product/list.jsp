@@ -23,6 +23,15 @@
 					<!-- 리스트 start -->
 					<div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                     	<div class="card-body p-0">
+                    		<c:if test="${member ne null}">
+	                    		<div class="row px-2 py-2 align-items-center justify-content-end">
+			                        <div class="col-auto">
+										<a class="btn btn-outline-primary" href="add">
+											<h6 class="display-10 fw-bolder mb-0">상품추가</h1>
+										</a>
+									</div>
+								</div>
+							</c:if>
                     		<div class="align-items-center justify-content-center">
                     			<div class="p-5">
 				                    <div class="row gx-5 justify-content-center">
@@ -39,7 +48,7 @@
 											  	<c:forEach items="${list}" var="list">
 												    <tr>
 												      <th scope="row">${list.bookNumber}</th>
-												      <td>${list.bookName}</td>
+												      <td><a href="detail?bookNumber=${list.bookNumber}">${list.bookName}</td>
 												      <td>${list.bookRate}</td>
 												    </tr>
 											    </c:forEach>
