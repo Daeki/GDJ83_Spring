@@ -23,6 +23,7 @@
 					<!-- 리스트 start -->
 					<div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                     	<div class="card-body p-0">
+                    	<c:if test="${member.userName eq boardDTO.boardWriter}">
                     		<div class="row px-2 py-2 align-items-center justify-content-end">
 		                        <div class="col-auto">
 									<a type="submit" class="btn btn-outline-primary" href="update?boardNum=${boardDTO.boardNum}">
@@ -30,6 +31,7 @@
 									</a>
 								</div>
 							</div>
+						</c:if>
                     		<div class="align-items-center justify-content-center">
                     			<div class="p-5">
 				                    <div class="row gx-5 justify-content-center">

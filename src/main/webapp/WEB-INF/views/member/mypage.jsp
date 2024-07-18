@@ -20,7 +20,7 @@
                 <div class="container px-5">
                     <div class="bg-light rounded-4 py-5 px-4 px-md-5">
                         <div class="text-center mb-5">
-                        	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">My page</span></h1>
+                        	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">내 정보</span></h1>
                     	</div>
                     	<div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                     	<div class="card-body p-0">
@@ -61,7 +61,8 @@
                         </div>
                         <div class="row gx-3 align-items-center justify-content-end">
 	                        <div class="col-auto">
-								<a type="submit" class="btn btn-primary" href="update?userName=${member.userName}">수정</a>
+								<a type="submit" class="btn btn-outline-primary" href="update?userName=${member.userName}">
+									<h6 class="display-10 fw-bolder mb-0">정보 수정</h1></a>
 							</div>
 						</div>
                     </div>

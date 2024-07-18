@@ -21,7 +21,7 @@
                     <!-- 회원가입 form start -->
                     <div class="bg-light rounded-4 py-5 px-4 px-md-5">
                         <div class="text-center mb-5">
-                        	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Update</span></h1>
+                        	<h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">회원 정보 수정</span></h1>
                     	</div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
@@ -80,7 +80,7 @@
                                     <!-- an error submitting the form-->
                                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                                     <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Sign in</button></div>
+                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">정보 수정</button></div>
                                 </form>
                             </div>
                         </div>
