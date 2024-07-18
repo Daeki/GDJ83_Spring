@@ -15,7 +15,7 @@
                 <li class="nav-item"><a class="nav-link" href="/qna/list">QnA</a></li>
                 <c:choose>
                 	<c:when test="${member ne null}">
-                		<li class="nav-item"><a class="nav-link" href="/member/mypage">My page</a></li>
+                		<li class="nav-item"><a class="nav-link" href="/member/mypage">${member.userName}</a></li>
 		                <li class="nav-item"><a class="nav-link" href="/member/logout">Sign out</a></li>
                 	</c:when>
                 	<c:otherwise>

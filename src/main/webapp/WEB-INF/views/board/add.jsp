@@ -30,34 +30,18 @@
                     	</div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form id="contactForm" action="add" method="post" data-sb-form-api-token="API_TOKEN">
+                                <form id="contactForm" method="post" data-sb-form-api-token="API_TOKEN">
                                 	<input type="hidden" value="${member.userName}" name="boardWriter">
-                                	<c:if test="${boardDTO eq null}">
 	                                    <!-- 제목 입력-->
 	                                    <div class="form-floating mb-3">
-	                                        <input class="form-control" name="boardTitle" id="boardTitle" type="text" placeholder="제목을 적어주세요." data-sb-validations="required" />
+	                                        <input class="form-control" value="${boardDTO.boardTitle}" name="boardTitle" id="boardTitle" type="text"/>
 	                                        <label for="boardTitle">제목</label>
-	                                        <div class="invalid-feedback" data-sb-feedback="boardTitle:required">제목이 필요합니다.</div>
 	                                    </div>
 	                                    <!-- 내용 입력 --> 
 	                                   	<div class="form-floating mb-3">
-	                                        <textarea class="form-control" name="boardContents" id="boardContents" type="text" placeholder="내용을 적어주세요." style="height: 10rem" data-sb-validations="required"></textarea>
+	                                        <textarea class="form-control" name="boardContents" id="boardContents" type="text" style="height: 10rem">${boardDTO.boardContents}</textarea>
 	                                        <label for="boardContents">내용</label>
-	                                        <div class="invalid-feedback" data-sb-feedback="boardContents:required">내용을 적어야합니다.</div>
 	                                    </div>
-                                    </c:if>
-                                    <c:if test="${boardDTO ne null}">
-                                    <!-- 제목 입력-->
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" value="${boardDTO.boardTitle}" name="boardTitle" id="boardTitle" type="text" />
-                                        <label for="boardTitle">제목</label>
-                                    </div>
-                                    <!-- 내용 입력 --> 
-                                   	<div class="form-floating mb-3">
-                                        <textarea class="form-control" name="boardContents" id="boardContents" type="text" style="height: 10rem" >${boardDTO.boardContents}</textarea>
-                                        <label for="boardContents">내용</label>
-                                    </div>
-                                    </c:if>
                                     <!-- Submit success message-->
                                     <!---->
                                     <!-- This is what your users will see when the form-->
@@ -79,7 +63,14 @@
                                     <div class="row py-2 align-items-center justify-content-end">
                                      	<div class="col-auto">
                                     		<button type="submit" class="btn btn-outline-primary">
-												<h6 class="display-10 fw-bolder mb-0">등록</h1>
+												<h6 class="display-10 fw-bolder mb-0">
+													<c:if test="${boardDTO eq null}">
+													등록
+													</c:if>
+													<c:if test="${boardDTO ne null}">
+													수정
+													</c:if>
+													</h1>
 											</button>
                                     	</div>
 								  	</div>
