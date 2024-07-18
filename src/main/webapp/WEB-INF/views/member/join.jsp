@@ -25,62 +25,50 @@
                     	</div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form id="contactForm" action="join" method="post">
+                                <form id="joinForm" action="join" method="post">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="userName" id="userName" type="text" placeholder="Enter your ID..." data-sb-validations="required" />
+                                        <input class="form-control ch" name="userName" id="userName" type="text" placeholder="Enter your ID..." data-sb-validations="required" />
                                         <label for="userName">ID</label>
                                         <div class="invalid-feedback" data-sb-feedback="username:required">A ID is required.</div>
                                     </div>
                                     <!-- password input --> 
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="password" id="password" type="text" placeholder="Enter your password..." data-sb-validations="required" />
+                                        <input class="form-control ch" name="password" id="password" type="text" placeholder="Enter your password..." data-sb-validations="required" />
                                         <label for="password">Password</label>
                                         <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
+                                        <div id="password-error"></div>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="name" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                        <input class="form-control ch" name="name" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                                         <label for="name">Full Name</label>
                                         <div class="invalid-feedback" data-sb-feedback="name:required">A Name is required.</div>
                                     </div>
                                     <!-- Email address input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="email" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                                        <input class="form-control ch" name="email" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
                                         <label for="email">Email address</label>
                                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                                     </div>
                                     <!-- Phone number input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" name="phone" id="phone" type="tel" placeholder="010-456-7890" data-sb-validations="required" />
+                                        <input class="form-control ch" name="phone" id="phone" type="tel" placeholder="010-456-7890" data-sb-validations="required" />
                                         <label for="phone">Phone number</label>
                                         <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
                                     </div>
                                     <!-- address input-->
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" name="address" id="message" type="text" placeholder="Enter your address here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                                        <textarea class="form-control ch" name="address" id="message" type="text" placeholder="Enter your address here..." style="height: 10rem" data-sb-validations="required"></textarea>
                                         <label for="address">Address</label>
                                         <div class="invalid-feedback" data-sb-feedback="address:required">A address is required.</div>
                                     </div>
-                                    <!-- Submit success message-->
-                                    <!---->
-                                    <!-- This is what your users will see when the form-->
-                                    <!-- has successfully submitted-->
-                                    <div class="d-none" id="submitSuccessMessage">
-                                        <div class="text-center mb-3">
-                                            <div class="fw-bolder">Form submission successful!</div>
-                                            To activate this form, sign up at
-                                            <br />
-                                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                        </div>
+                                    <div class="d-grid mb-2">
+                                        <button class="btn btn-primary btn-lg" id="add" type="button">사진파일추가</button>
+                                        <div id="result"></div>
                                     </div>
-                                    <!-- Submit error message-->
-                                    <!---->
-                                    <!-- This is what your users will see when there is-->
-                                    <!-- an error submitting the form-->
-                                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                                    <!-- Submit Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Sign in</button></div>
+                                    <!-- 회원가입 Button-->
+                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="btn" type="button">회원가입</button></div>
                                 </form>
                             </div>
                         </div>
@@ -94,5 +82,9 @@
 		<!-- 하단 footer, js start -->
 		<c:import url="/WEB-INF/views/template/footer_js.jsp"></c:import>
 		<!-- 하단 footer, js end -->
+		
+
+		<script src="/resources/js/member/memberJoinCheck.js"></script>
+        <script src="/resources/js/commons/files.js"></script>
 	</body>
 </html>
