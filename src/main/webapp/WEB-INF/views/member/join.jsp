@@ -25,7 +25,7 @@
                     	</div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form id="joinForm" action="join" method="post">
+                                <form id="joinForm" action="join" method="post" enctype="multipart/form-data">
                                     <!-- ID 입력-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control ch" name="userName" id="userName" type="text" placeholder="Enter your ID..." data-sb-validations="required" />
@@ -70,7 +70,7 @@
                                         <div id="result"></div>
                                     </div>
                                     <!-- 회원가입 Button-->
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="btn" type="button">회원가입</button></div>
+                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="btn" type="submit">회원가입</button></div>
                                 </form>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
 		<!-- 하단 footer, js end -->
 		
 
-		<script src="/resources/js/member/memberJoinCheck.js"></script>
+		<!-- <script src="/resources/js/member/memberJoinCheck.js"></script> -->
         <script src="/resources/js/commons/files.js"></script>
 	</body>
 </html>

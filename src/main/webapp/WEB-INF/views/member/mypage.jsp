@@ -26,6 +26,16 @@
                     	<div class="card-body p-0">
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
+                            		<div>
+                            			<c:if test="${not empty member.memberFileDTO}">
+                            			<img alt="" src="/resources/upload/members/${member.memberFileDTO.fileName}">
+                            			</c:if>
+                            			
+                            			<c:if test="${empty member.memberFileDTO}">
+                            			<img alt="" src="/resources/upload/members/">
+                            			</c:if>
+                            		</div>
+                            
                                     <!-- Name input-->
                                     <div class="form-floating my-3">
                                         <input class="form-control" value="${member.userName}" id="userName" type="text" disabled/>

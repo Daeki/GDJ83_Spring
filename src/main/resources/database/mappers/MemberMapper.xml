@@ -4,6 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="com.winter.app.members.MemberDAO">
+  	<insert id="addFile" parameterType="MemberFileDTO">
+  		INSERT INTO MEMBERFILES 
+  		VALUES (FILES_SEQ.NEXTVAL, #{userName}, #{fileName}, #{oriName})
+  	</insert>
+  
   	<insert id="join" parameterType="MemberDTO">
   		INSERT INTO MEMBER(USERNAME, PASSWORD, NAME, EMAIL, PHONE, ADDRESS )
   		VALUES (#{userName}, #{password}, #{name}, #{email}, #{phone}, #{address})
@@ -16,11 +21,14 @@
   	</select>
   	
   	<select id="detail" parameterType="MemberDTO" resultMap="loginResult">
-  		SELECT M.*, A.*
+  		SELECT M.*, A.*, MF.*
   		FROM MEMBER M
   			 LEFT JOIN
   			 ACCOUNT A
   			 ON M.USERNAME = A.USERNAME
+		 	 LEFT JOIN
+		 	 MEMBERFILES MF
+		 	 ON M.USERNAME = MF.USERNAME   			 
   		WHERE M.USERNAME=#{userName}
   	</select>
   	
@@ -33,6 +41,13 @@
   		<result column="EMAIL" property="email"/>
   		<result column="PHONE" property="phone"/>
   		<result column="ADDRESS" property="address"/>
+  		<!-- 1:1  -->
+  		<association property="memberFileDTO" javaType="MemberFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</association>
+  		
   		<!-- 1: N -->
   		<collection property="dtos" javaType="java.util.List" ofType="AccountDTO">
   			<id column="ACCOUNTNUMBER" property="accountNumber" />
@@ -40,6 +55,8 @@
   			<result column="ACCOUNTDATE" property="accountDate"/>
   			<result column="ACCOUNTBALANCE" property="accountBalance"/>
   		</collection>
+  		
+  		
   	
   	</resultMap>
   	

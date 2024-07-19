@@ -11,6 +11,10 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.winter.app.members.MemberDAO.";
 
+	public int addFile(MemberFileDTO memberFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "addFile", memberFileDTO);
+	}
+
 	public int join(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "join", memberDTO);
 	}

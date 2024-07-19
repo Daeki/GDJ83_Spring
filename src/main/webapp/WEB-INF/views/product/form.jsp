@@ -49,13 +49,15 @@
                                     
                                     <div class="row py-2 align-items-center justify-content-end">
                                      	<div class="col-auto">
-                                    		<button class="btn btn-outline-primary">
+                                    		<button type="button" id="add" class="btn btn-outline-primary">
 												<h6 class="display-10 fw-bolder mb-0">
 												파일 추가
 												</h6>
 											</button>
 										</div>
 									</div>
+									
+									<div id="result"></div>
                                     <!-- Submit Button-->
                                     <div class="row py-2 align-items-center justify-content-end">
                                      	<div class="col-auto">
@@ -84,7 +86,9 @@
 		<c:import url="/WEB-INF/views/template/footer_js.jsp"></c:import>
 		<!-- 하단 footer, js end -->
 
-		<c:import url="/resources/js/commons/files.js"></c:import>
-		
+		<script src="/resources/js/commons/files.js"></script>
+		<script type="text/javascript">
+			setMax(5)
+		</script>
 	</body>
 </html>

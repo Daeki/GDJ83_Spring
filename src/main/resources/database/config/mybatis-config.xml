@@ -7,6 +7,7 @@
 		<typeAlias type="com.winter.app.products.ProductDTO" alias="ProductDTO"/>
 		
 		<typeAlias type="com.winter.app.members.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.winter.app.members.MemberFileDTO" alias="MemberFileDTO"/>
 		
 		<typeAlias type="com.winter.app.accounts.AccountDTO" alias="AccountDTO"/>
 		<typeAlias type="com.winter.app.accounts.TradeDTO" alias="TradeDTO"/>
@@ -16,6 +17,8 @@
 		<typeAlias type="com.winter.app.boards.notices.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.winter.app.boards.qnas.QnaDTO" alias="QnaDTO"/>
 		
+		
+		<typeAlias type="com.winter.app.files.FileDTO" alias="FileDTO"/>
 		<typeAlias type="com.winter.app.util.Pager" alias="Pager"/>
 		
 		<typeAlias type="java.util.Map" alias="Map"/>

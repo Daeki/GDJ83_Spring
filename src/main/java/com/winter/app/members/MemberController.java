@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/member/*")
@@ -22,9 +23,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(MemberDTO memberDTO) throws Exception {
+	public String join(MemberDTO memberDTO, MultipartFile files, HttpSession session) throws Exception {
 
-		int result = memberService.join(memberDTO);
+		int result = memberService.join(memberDTO, files, session);
 
 		return "redirect:/";
 	}
@@ -78,7 +79,9 @@ public class MemberController {
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public void mypage(HttpSession session, Model model) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		System.out.println(memberDTO.getUserName());
 		memberDTO = memberService.detail(memberDTO);
+		System.out.println(memberDTO.getMemberFileDTO().getFileName());
 		model.addAttribute("member", memberDTO);
 
 	}
