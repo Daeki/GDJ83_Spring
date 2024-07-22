@@ -1,9 +1,15 @@
 package com.winter.app.products;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.util.Pager;
 
@@ -31,8 +37,52 @@ public class ProductService {
 		return productDAO.getDetail(productDTO);
 	}
 
-	public int add(ProductDTO productDTO) throws Exception {
-		return productDAO.add(productDTO);
+	public int add(ProductDTO productDTO, MultipartFile[] files, HttpSession session) throws Exception {
+
+		Long num = productDAO.getNum();
+
+		productDTO.setBookNumber(num);
+
+		int result = productDAO.add(productDTO);
+
+		if (files == null) {
+			return result;
+		}
+
+		// 1. 저장할 폴더 지정
+		ServletContext servletContext = session.getServletContext();
+		String path = servletContext.getRealPath("resources/upload/products");
+		System.out.println(path);
+		File file = new File(path);
+
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+
+		for (MultipartFile f : files) {
+			if (f.isEmpty()) {
+				continue;
+			}
+
+			// 2. 저장할 파일명 생성
+			String fileName = UUID.randomUUID().toString();
+			fileName = fileName + "_" + f.getOriginalFilename();
+
+			// 3. HDD에 파일 저장
+			File f2 = new File(file, fileName);
+			f.transferTo(f2);
+
+			// 4. 파일정보를 DB에 저장
+			// 파일명, 오리지널, 파일번호, 제품id
+			ProductFileDTO productFileDTO = new ProductFileDTO();
+			productFileDTO.setFileName(fileName);
+			productFileDTO.setOriName(f.getOriginalFilename());
+			productFileDTO.setBookNumber(num);
+			result = productDAO.addFile(productFileDTO);
+
+		}
+
+		return result;
 	}
 
 	public int update(ProductDTO productDTO) throws Exception {

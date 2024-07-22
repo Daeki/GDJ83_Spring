@@ -30,7 +30,7 @@
                     	</div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form method="post">
+                                <form method="post" enctype="multipart/form-data">
 	                                    <!-- 제목 입력-->
 	                                    <div class="form-floating mb-3">
 	                                        <input class="form-control" value="${dto.bookName}" name="bookName" id="bookName" type="text"/>

@@ -56,9 +56,18 @@
   		SELECT * FROM BANKBOOk WHERE BOOKNUMBER = #{bookNumber}
   	</select>
   	
+  	<select id="getNum" resultType="Long">
+  		SELECT BANKBOOK_SEQ.NEXTVAL FROM DUAL
+  	</select>
+  	
   	<insert id="add" parameterType="ProductDTO">
   		INSERT INTO BANKBOOK 
-  		VALUES (BANKBOOK_SEQ.NEXTVAL, #{bookName}, #{bookRate}, 1, #{bookDetail})
+  		VALUES (#{bookNumber}, #{bookName}, #{bookRate}, 1, #{bookDetail})
+  	</insert>
+  	
+  	<insert id="addFile" parameterType="ProductFileDTO">
+  		INSERT INTO BANKBOOKFILES
+  		VALUES (FILES_SEQ.NEXTVAL, #{bookNumber}, #{fileName}, #{oriName})
   	</insert>
   	  	
   	<update id="update" parameterType="ProductDTO">
