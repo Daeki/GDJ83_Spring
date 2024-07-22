@@ -59,10 +59,40 @@
   			SYSDATE, 0, 'N'
   		)	
   	
-  	</insert>  	
-  	<select id="detail" parameterType="NoticeDTO" resultType="NoticeDTO">
-  		SELECT * FROM NOTICE WHERE BOARDNUM=#{boardNum}
-  	</select>  	
+  	</insert>  
+  	
+  	<insert id="addFile" parameterType="BoardFileDTO">
+  		INSERT INTO QNA	VALUES
+  		(
+  			FILES_SEQ.NEXTVAL,#{boardNum}, #{fileName}, #{oriName}
+  		)	
+  	
+  	</insert>
+  		
+  	<select id="detail" parameterType="NoticeDTO" resultMap="detailResult">
+  		SELECT N.*, NF.* 
+  		FROM NOTICE N
+  			 LEFT JOIN
+  			 NOTICEFILES NF 
+  			 ON N.boardNum = NF.boardNum
+  		WHERE N.BOARDNUM=#{boardNum}
+  	</select>  
+  	
+  	<resultMap type="NoticeDTO" id="detailResult">
+  		<id column="BOARDNUM" property="boardNum"/>
+  		<result column="BOARDWRITER" property="boardWriter"/>
+  		<result column="BOARDCONTENTS" property="boardContents"/>
+  		<result column="BOARDTITLE" property="boardTitle"/>
+  		<result column="CREATEDATE" property="createDate"/>
+  		<result column="UPDATEDATE" property="updateDate"/>
+  		<result column="BOARDHIT" property="boardHit"/>
+  		<result column="BOARDCATEGORY" property="boardCategory"/>
+  		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>  		
+  		</collection>
+  	</resultMap>	
   	
   	<update id="update" parameterType="NoticeDTO">
   		UPDATE NOTICE SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents}, UPDATEDATE=SYSDATE

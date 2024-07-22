@@ -15,6 +15,7 @@
 		<typeAlias type="com.winter.app.accounts.ListOption" alias="ListOption"/>
 		
 		<typeAlias type="com.winter.app.boards.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.winter.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.winter.app.boards.notices.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.winter.app.boards.qnas.QnaDTO" alias="QnaDTO"/>
 		

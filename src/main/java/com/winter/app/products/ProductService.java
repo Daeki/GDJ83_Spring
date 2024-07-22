@@ -1,8 +1,6 @@
 package com.winter.app.products;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -11,12 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.files.FileManager;
 import com.winter.app.util.Pager;
 
 @Service
 public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
+
+	@Autowired
+	private FileManager fileManager;
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// page가 1 2 3 4
@@ -53,11 +55,6 @@ public class ProductService {
 		ServletContext servletContext = session.getServletContext();
 		String path = servletContext.getRealPath("resources/upload/products");
 		System.out.println(path);
-		File file = new File(path);
-
-		if (!file.exists()) {
-			file.mkdirs();
-		}
 
 		for (MultipartFile f : files) {
 			if (f.isEmpty()) {
@@ -65,13 +62,7 @@ public class ProductService {
 			}
 
 			// 2. 저장할 파일명 생성
-			String fileName = UUID.randomUUID().toString();
-			fileName = fileName + "_" + f.getOriginalFilename();
-
-			// 3. HDD에 파일 저장
-			File f2 = new File(file, fileName);
-			f.transferTo(f2);
-
+			String fileName = fileManager.fileSave(path, f);
 			// 4. 파일정보를 DB에 저장
 			// 파일명, 오리지널, 파일번호, 제품id
 			ProductFileDTO productFileDTO = new ProductFileDTO();

@@ -2,17 +2,24 @@ package com.winter.app.boards.qnas;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.boards.BoardDTO;
+import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.boards.BoardService;
+import com.winter.app.files.FileManager;
 import com.winter.app.util.Pager;
 
 @Service
 public class QnaService implements BoardService {
 	@Autowired
 	private QnaDAO qnaDAO;
+	@Autowired
+	private FileManager fileManager;
 
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
@@ -25,9 +32,31 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int add(BoardDTO boardDTO) throws Exception {
+	public int add(BoardDTO boardDTO, MultipartFile[] multipartFiles, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
-		return qnaDAO.add(boardDTO);
+		int result = qnaDAO.add(boardDTO);
+
+		String path = session.getServletContext().getRealPath("resources/upload/Qna");
+
+		if (multipartFiles == null) {
+			return result;
+		}
+
+		for (MultipartFile f : multipartFiles) {
+			if (f.isEmpty()) {
+				continue;
+			}
+
+			String fileName = fileManager.fileSave(path, f);
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(f.getOriginalFilename());
+			result = qnaDAO.addFile(boardFileDTO);
+		}
+		return result;
 	}
 
 	@Override

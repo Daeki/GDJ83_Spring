@@ -70,6 +70,12 @@
 												</tr>
 											  </table>
 											</table>
+											
+											<div>
+												<c:forEach items="${boardDTO.boardFileDTOs}" var="f">
+													<a href="/resources/upload/${board}/${f.fileName}">${f.oriName}</a>
+												</c:forEach>
+											</div>
 										</div>
 									</div>
 								</div>

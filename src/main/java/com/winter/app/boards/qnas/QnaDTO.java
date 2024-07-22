@@ -4,9 +4,18 @@ import com.winter.app.boards.BoardDTO;
 
 public class QnaDTO extends BoardDTO {
 
+	private Integer del;
 	private Long ref;
 	private Long step;
 	private Long depth;
+
+	public Integer getDel() {
+		return del;
+	}
+
+	public void setDel(Integer del) {
+		this.del = del;
+	}
 
 	public Long getRef() {
 		return ref;

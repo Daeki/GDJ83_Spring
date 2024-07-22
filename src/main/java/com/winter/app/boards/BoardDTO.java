@@ -1,6 +1,7 @@
 package com.winter.app.boards;
 
 import java.sql.Date;
+import java.util.List;
 
 public class BoardDTO {
 	private Long boardNum;
@@ -12,6 +13,16 @@ public class BoardDTO {
 	private String boardContents;
 	private String boardCategory;
 	private Integer del;
+
+	private List<BoardFileDTO> boardFileDTOs;
+
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
+	}
+
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
+	}
 
 	public Integer getDel() {
 		if (this.del == null) {

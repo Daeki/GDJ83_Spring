@@ -30,7 +30,7 @@
                     	</div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form id="contactForm" method="post" data-sb-form-api-token="API_TOKEN">
+                                <form id="contactForm" method="post" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
                                 	<input type="hidden" value="${member.userName}" name="boardWriter">
 	                                    <!-- 제목 입력-->
 	                                    <div class="form-floating mb-3">
@@ -59,6 +59,12 @@
                                     <!-- This is what your users will see when there is-->
                                     <!-- an error submitting the form-->
                                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                                    
+                                    <div>
+                                    	<button type="button" class="btn btn-outline-primary" id="add">첨부파일추가</button>
+                                    	<div id="result"></div>
+                                    </div>
+                                    
                                     <!-- Submit Button-->
                                     <div class="row py-2 align-items-center justify-content-end">
                                      	<div class="col-auto">
@@ -86,5 +92,9 @@
 		<!-- 하단 footer, js start -->
 		<c:import url="/WEB-INF/views/template/footer_js.jsp"></c:import>
 		<!-- 하단 footer, js end -->
+		<script type="text/javascript" src="/resources/js/commons/files.js"></script>
+		<script type="text/javascript">
+			setMax(5);
+		</script>
 	</body>
 </html>
