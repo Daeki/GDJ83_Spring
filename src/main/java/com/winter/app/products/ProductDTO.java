@@ -1,5 +1,7 @@
 package com.winter.app.products;
 
+import java.util.List;
+
 public class ProductDTO {
 
 	private Long bookNumber;
@@ -7,6 +9,15 @@ public class ProductDTO {
 	private Double bookRate;
 	private Integer bookSale;
 	private String bookDetail;
+	private List<ProductFileDTO> fileDTOs;
+
+	public List<ProductFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+
+	public void setFileDTOs(List<ProductFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 
 	public Long getBookNumber() {
 		return bookNumber;

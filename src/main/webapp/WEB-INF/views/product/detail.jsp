@@ -66,6 +66,12 @@
 												</tr>
 											  </table>
 											</table>
+											<div>
+												<c:forEach items="${dto.fileDTOs}" var="f">
+													<a href="/resources/upload/products/${f.fileName}">${f.oriName}</a>
+												
+												</c:forEach>
+											</div>
 										</div>
 									</div>
 								</div>

@@ -52,9 +52,26 @@
   		<![CDATA[ ]]>
   	</select>
   	
-  	<select id="getDetail" resultType="ProductDTO" parameterType="ProductDTO">
-  		SELECT * FROM BANKBOOk WHERE BOOKNUMBER = #{bookNumber}
+  	<select id="getDetail" resultMap="getDetailResult" parameterType="ProductDTO">
+  		SELECT B.*, BF.* 
+  		FROM BANKBOOk B
+  			 LEFT JOIN
+  			 BANKBOOKFILES BF 
+  			 ON (B.BOOKNUMBER=BF.BOOKNUMBER)	
+  		WHERE BOOKNUMBER = #{bookNumber}
   	</select>
+  	
+  	<resultMap type="ProductDTO" id="getDetailResult">
+  		<id column="BOOKNUMBER" property="bookNumber"/>
+  		<result column="BOOKNAME" property="bookName"/>
+  		<result column="BOOKRATE" property="bookRate"/>
+  		<result column="BOOKDETAIL" property="bookDetail"/>
+  		<collection property="fileDTOs" javaType="List" ofType="BankBookFileDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</collection>
+  	</resultMap>
   	
   	<select id="getNum" resultType="Long">
   		SELECT BANKBOOK_SEQ.NEXTVAL FROM DUAL
