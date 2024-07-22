@@ -88,10 +88,10 @@ public class QnaController {
 	}
 
 	@PostMapping("reply")
-	public String reply(QnaDTO qnaDTO, HttpSession session) throws Exception {
+	public String reply(QnaDTO qnaDTO, HttpSession session, MultipartFile[] files) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		qnaDTO.setBoardWriter(memberDTO.getUserName());
-		int result = qnaService.reply(qnaDTO);
+		int result = qnaService.reply(qnaDTO, files, session);
 		return "redirect:./list";
 	}
 

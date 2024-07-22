@@ -76,15 +76,18 @@
   	
   	
   	<insert id="reply" parameterType="QnaDTO">
+  		<selectKey order="BEFORE" resultType="Long" keyProperty="boardNum">
+  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
   		INSERT INTO QNA 
   		(
   			BOARDNUM, BOARDWRITER, BOARDTITLE, BOARDCONTENTS, CREATEDATE, 
-  			UPDATEDATE, BOARDHIT, BOARDCATEGORY, REF, STEP, DEPTH 
+  			UPDATEDATE, BOARDHIT, BOARDCATEGORY, REF, STEP, DEPTH , DEL
   		)
   		VALUES
   		(
-  			BOARD_SEQ.NEXTVAL, #{boardWriter}, #{boardTitle}, #{boardContents}, SYSDATE,
-  			SYSDATE, 0, 'Q', #{ref}, #{step}, #{depth}
+  			#{boardNum}, #{boardWriter}, #{boardTitle}, #{boardContents}, SYSDATE,
+  			SYSDATE, 0, 'Q', #{ref}, #{step}, #{depth}, 0
   		)  	
   	
   	</insert>

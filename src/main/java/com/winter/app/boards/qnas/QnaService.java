@@ -77,7 +77,7 @@ public class QnaService implements BoardService {
 		return qnaDAO.detail(boardDTO);
 	}
 
-	public int reply(QnaDTO qnaDTO) throws Exception {
+	public int reply(QnaDTO qnaDTO, MultipartFile[] multipartFiles, HttpSession session) throws Exception {
 		QnaDTO parent = (QnaDTO) qnaDAO.detail(qnaDTO);
 		// 1. step 1씩 업데이트
 		int result = qnaDAO.replyUpdate(parent);
@@ -86,7 +86,30 @@ public class QnaService implements BoardService {
 		qnaDTO.setRef(parent.getRef());
 		qnaDTO.setStep(parent.getStep() + 1);
 		qnaDTO.setDepth(parent.getDepth() + 1);
-		return qnaDAO.reply(qnaDTO);
+		result = qnaDAO.reply(qnaDTO);
+
+		// 파일 저장
+		String path = session.getServletContext().getRealPath("resources/upload/Qna");
+
+		if (multipartFiles == null) {
+			return result;
+		}
+
+		for (MultipartFile f : multipartFiles) {
+			if (f.isEmpty()) {
+				continue;
+			}
+
+			String fileName = fileManager.fileSave(path, f);
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+
+			boardFileDTO.setBoardNum(qnaDTO.getBoardNum());
+
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(f.getOriginalFilename());
+			result = qnaDAO.addFile(boardFileDTO);
+		}
+		return result;
 	}
 
 }

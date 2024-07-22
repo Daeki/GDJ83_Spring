@@ -62,7 +62,7 @@
   	</insert>  
   	
   	<insert id="addFile" parameterType="BoardFileDTO">
-  		INSERT INTO QNA	VALUES
+  		INSERT INTO NOTICEFILES	VALUES
   		(
   			FILES_SEQ.NEXTVAL,#{boardNum}, #{fileName}, #{oriName}
   		)	
