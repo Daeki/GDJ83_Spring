@@ -1,11 +1,13 @@
 package com.winter.app.products;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.winter.app.members.MemberDTO;
 import com.winter.app.util.Pager;
 
 @Repository
@@ -15,6 +17,14 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 
 	private final String NAMESPACE = "com.winter.app.products.ProductDAO.";
+
+	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "wishList", memberDTO);
+	}
+
+	public int addWish(Map<String, Object> map) throws Exception {
+		return sqlSession.insert(NAMESPACE + "addWish", map);
+	}
 
 	public Long getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);

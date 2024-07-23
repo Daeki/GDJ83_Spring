@@ -4,6 +4,19 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="com.winter.app.products.ProductDAO">
+  	<select id="wishList" parameterType="MemberDTO" resultType="ProductDTO">
+  		SELECT * FROM BANKBOOK
+		WHERE BOOKNUMBER IN (
+		(SELECT BOOKNUMBER
+		FROM WISHLIST 
+		WHERE USERNAME=#{userName}))	  	
+  	</select>
+  
+  	<insert id="addWish" parameterType="Map">
+  		INSERT INTO WISHLIST
+  		VALUES(#{bookNumber}, #{userName})
+  	</insert>
+  
   
   	<select id="getTotalCount" resultType="java.lang.Long" parameterType="Pager">
   		SELECT COUNT(BOOKNUMBER) FROM BANKBOOK

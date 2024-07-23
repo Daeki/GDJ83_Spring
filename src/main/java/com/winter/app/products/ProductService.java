@@ -1,6 +1,8 @@
 package com.winter.app.products;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.files.FileManager;
+import com.winter.app.members.MemberDTO;
 import com.winter.app.util.Pager;
 
 @Service
@@ -19,6 +22,19 @@ public class ProductService {
 
 	@Autowired
 	private FileManager fileManager;
+
+	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {
+		return productDAO.wishList(memberDTO);
+	}
+
+	public int addWish(Long bookNumber, String userName) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bookNumber", bookNumber);
+		map.put("userName", userName);
+
+		return productDAO.addWish(map);
+
+	}
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// page가 1 2 3 4

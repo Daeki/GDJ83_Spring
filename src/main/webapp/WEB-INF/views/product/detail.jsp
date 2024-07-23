@@ -31,6 +31,14 @@
 									</a>
 								</div>
 							</div>
+							
+							 <div class="row px-2 py-2 align-items-center justify-content-end">
+		                        <div class="col-auto">
+									<button type="button" id="addWish" data-product-id="${dto.bookNumber}" class="btn btn-outline-primary">
+										<h6 class="display-10 fw-bolder mb-0">관심목록추가</h6>
+									</button>
+								</div>
+							</div>
 						</c:if>
                     		<div class="align-items-center justify-content-center">
                     			<div class="p-5">
@@ -81,10 +89,13 @@
 					<!-- 리스트 end -->
 				</div>
 	
-		
+		<div id="wishResult">
+
+		</div>
 		</main>
 		<!-- 하단 footer, js start -->
 		<c:import url="/WEB-INF/views/template/footer_js.jsp"></c:import>
 		<!-- 하단 footer, js end -->
+		 <script src="/resources/js/product/wish.js"></script>
 	</body>
 </html>
