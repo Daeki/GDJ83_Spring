@@ -2,6 +2,7 @@ package com.winter.app.boards;
 
 import java.util.List;
 
+import com.winter.app.files.FileDTO;
 import com.winter.app.util.Pager;
 
 public interface BoardDAO {
@@ -27,5 +28,8 @@ public interface BoardDAO {
 
 	// detail
 	BoardDTO detail(BoardDTO boardDTO) throws Exception;
+
+	// fileDetail
+	FileDTO fileDetail(FileDTO fileDTO) throws Exception;
 
 }

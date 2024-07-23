@@ -134,6 +134,10 @@
   	<delete id="delete" parameterType="QnaDTO">
   		UPDATE QNA SET DEL=1 WHERE boardNum=#{boardNum}
   	</delete>
+  	
+  	<select id="fileDetail" parameterType="FileDTO" resultType="FileDTO">
+  		SELECT * FROM QNAFILES WHERE FILENUM=#{fileNum}
+  	</select>
   
   	
   </mapper>

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.boards.BoardDTO;
+import com.winter.app.files.FileDTO;
 import com.winter.app.members.MemberDTO;
 import com.winter.app.util.Pager;
 
@@ -93,6 +94,13 @@ public class QnaController {
 		qnaDTO.setBoardWriter(memberDTO.getUserName());
 		int result = qnaService.reply(qnaDTO, files, session);
 		return "redirect:./list";
+	}
+
+	@GetMapping("fileDown")
+	public String fileDown(FileDTO fileDTO, Model model) throws Exception {
+		fileDTO = qnaService.fileDetail(fileDTO);
+		model.addAttribute("file", fileDTO);
+		return "fileDown";
 	}
 
 }

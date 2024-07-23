@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.winter.app.boards.BoardDTO;
 import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.boards.BoardService;
+import com.winter.app.files.FileDTO;
 import com.winter.app.files.FileManager;
 import com.winter.app.util.Pager;
 
@@ -75,6 +76,12 @@ public class QnaService implements BoardService {
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return qnaDAO.detail(boardDTO);
+	}
+
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.fileDetail(fileDTO);
 	}
 
 	public int reply(QnaDTO qnaDTO, MultipartFile[] multipartFiles, HttpSession session) throws Exception {

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.files.FileDTO;
 import com.winter.app.util.Pager;
 
 public interface BoardService {
@@ -24,5 +25,8 @@ public interface BoardService {
 
 	// detail
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception;
+
+	// fileDetail
+	FileDTO fileDetail(FileDTO fileDTO) throws Exception;
 
 }
