@@ -31,17 +31,23 @@
 											<table class="table table-hover">
 											  <thead>
 											    <tr>
+												  <th>
+													<input type="checkbox">
+												  </th>
 											      <th scope="col">번호</th>
 											      <th scope="col">상품명</th>
 											      <th scope="col">이자율</th>
+												  <th>삭제</th>
 											    </tr>
 											  </thead>
 											  <tbody>
-											  	<c:forEach items="${list}" var="list">
-												    <tr>
+											  	<c:forEach items="${list}" var="list" varStatus="i">
+												    <tr id="w${i.index}">
+													  <td><input type="checkbox"> </td>
 												      <th scope="row">${list.bookNumber}</th>
 												      <td><a href="detail?bookNumber=${list.bookNumber}">${list.bookName}</td>
 												      <td>${list.bookRate}</td>
+													  <td><button type="button" class="btn btn-primary wishDelete" data-del-id="w${i.index}"  data-wish-id="${list.bookNumber}">X</button> </td>
 												    </tr>
 											    </c:forEach>
 											  </tbody>
@@ -90,5 +96,6 @@
 		<!-- 하단 footer, js start -->
 		<c:import url="/WEB-INF/views/template/footer_js.jsp"></c:import>
 		<!-- 하단 footer, js end -->
+		 <script src="/resources/js/product/wishDelete.js"></script>
 	</body>
 </html>
