@@ -29,8 +29,11 @@ public class ProductController {
 	}
 
 	@GetMapping("deleteWishList")
-	public String deleteWishList(Long bookNumber, Model model, HttpSession session) throws Exception {
-		System.out.println(bookNumber);
+	public String deleteWishList(Long[] bookNumber, Model model, HttpSession session) throws Exception {
+		for (Long bn : bookNumber) {
+			System.out.println(bn);
+		}
+
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		int result = productService.deleteWishList(bookNumber, memberDTO.getUserName());
 		model.addAttribute("msg", result);

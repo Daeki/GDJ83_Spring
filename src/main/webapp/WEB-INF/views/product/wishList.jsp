@@ -28,6 +28,10 @@
                     			<div class="p-5">
 				                    <div class="row gx-5 justify-content-center">
 				                        <div class="col-lg-11 col-xl-11 col-xxl-11">
+											<div>
+												<button type="button" class="btn btn-primary" id="delAll">전체삭제</button>
+											</div>	
+
 											<table class="table table-hover">
 											  <thead>
 											    <tr>
@@ -42,8 +46,8 @@
 											  </thead>
 											  <tbody>
 											  	<c:forEach items="${list}" var="list" varStatus="i">
-												    <tr id="w${i.index}">
-													  <td><input type="checkbox" class="ch"> </td>
+												    <tr id="w${i.index}" >
+													  <td><input type="checkbox" class="ch" data-del-id="w${i.index}" data-wish-id="${list.bookNumber}" > </td>
 												      <th scope="row">${list.bookNumber}</th>
 												      <td><a href="detail?bookNumber=${list.bookNumber}">${list.bookName}</td>
 												      <td>${list.bookRate}</td>
