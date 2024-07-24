@@ -25,12 +25,16 @@ public class ProductService {
 
 	public int deleteWishList(Long[] bookNumber, String userName) throws Exception {
 		int result = 0;
-		for (Long bn : bookNumber) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("bookNumber", bn);
-			map.put("userName", userName);
-			result = productDAO.deleteWishList(map);
-		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userName", userName);
+		map.put("ids", bookNumber);
+		result = productDAO.deleteWishList(map);
+//		for (Long bn : bookNumber) {
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			map.put("bookNumber", bn);
+//			map.put("userName", userName);
+//			result = productDAO.deleteWishList(map);
+//		}
 		return result;
 	}
 

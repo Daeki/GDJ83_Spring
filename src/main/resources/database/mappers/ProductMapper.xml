@@ -5,7 +5,12 @@
 
   <mapper namespace="com.winter.app.products.ProductDAO">
   	<delete id="deleteWishList" parameterType="Map">
-  		DELETE WISHLIST WHERE BOOKNUMBER=#{bookNumber} AND USERNAME=#{userName}
+  		DELETE WISHLIST WHERE USERNAME=#{userName} AND
+  		BOOKNUMBER IN 
+  		<foreach collection="ids" item="item" open="(" separator="," close=")">
+  			#{item}
+  		</foreach>
+  		
   	</delete>
   
   	<select id="wishList" parameterType="MemberDTO" resultType="ProductDTO">
