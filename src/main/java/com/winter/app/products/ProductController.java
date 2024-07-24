@@ -28,6 +28,16 @@ public class ProductController {
 		return "Product";
 	}
 
+	@GetMapping("deleteWishList")
+	public String deleteWishList(Long bookNumber, Model model, HttpSession session) throws Exception {
+		System.out.println(bookNumber);
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		int result = productService.deleteWishList(bookNumber, memberDTO.getUserName());
+		model.addAttribute("msg", result);
+
+		return "commons/result";
+	}
+
 	@GetMapping("wishList")
 	public void wishList(HttpSession session, Model model) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");

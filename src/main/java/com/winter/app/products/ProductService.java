@@ -23,6 +23,13 @@ public class ProductService {
 	@Autowired
 	private FileManager fileManager;
 
+	public int deleteWishList(Long bookNumber, String userName) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("bookNumber", bookNumber);
+		map.put("userName", userName);
+		return productDAO.deleteWishList(map);
+	}
+
 	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {
 		return productDAO.wishList(memberDTO);
 	}
