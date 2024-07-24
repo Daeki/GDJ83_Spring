@@ -32,7 +32,7 @@
 											  <thead>
 											    <tr>
 												  <th>
-													<input type="checkbox">
+													<input type="checkbox" id="all">
 												  </th>
 											      <th scope="col">번호</th>
 											      <th scope="col">상품명</th>
@@ -43,7 +43,7 @@
 											  <tbody>
 											  	<c:forEach items="${list}" var="list" varStatus="i">
 												    <tr id="w${i.index}">
-													  <td><input type="checkbox"> </td>
+													  <td><input type="checkbox" class="ch"> </td>
 												      <th scope="row">${list.bookNumber}</th>
 												      <td><a href="detail?bookNumber=${list.bookNumber}">${list.bookName}</td>
 												      <td>${list.bookRate}</td>
