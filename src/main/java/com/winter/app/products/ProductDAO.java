@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.winter.app.members.MemberDTO;
 import com.winter.app.util.Pager;
+import com.winter.app.util.ProductCommentPager;
 
 @Repository
 public class ProductDAO {
@@ -17,6 +18,14 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 
 	private final String NAMESPACE = "com.winter.app.products.ProductDAO.";
+
+	public Long commentTotalCount(ProductCommentPager commentPager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "commentTotalCount", commentPager);
+	}
+
+	public List<ProductCommentDTO> commentList(ProductCommentPager commentPager) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "commentList", commentPager);
+	}
 
 	public int commentAdd(ProductCommentDTO productCommentDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "commentAdd", productCommentDTO);

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.winter.app.files.FileManager;
 import com.winter.app.members.MemberDTO;
 import com.winter.app.util.Pager;
+import com.winter.app.util.ProductCommentPager;
 
 @Service
 public class ProductService {
@@ -22,6 +23,16 @@ public class ProductService {
 
 	@Autowired
 	private FileManager fileManager;
+
+	public List<ProductCommentDTO> commentList(ProductCommentPager productCommentPager) throws Exception {
+		productCommentPager.makeRow();
+		System.out.println(productDAO);
+		System.out.println(productCommentPager);
+		Long t = productDAO.commentTotalCount(productCommentPager);
+		System.out.println(t);
+		productCommentPager.makeNum(productDAO.commentTotalCount(productCommentPager));
+		return productDAO.commentList(productCommentPager);
+	}
 
 	public int commentAdd(ProductCommentDTO productCommentDTO) throws Exception {
 		return productDAO.commentAdd(productCommentDTO);

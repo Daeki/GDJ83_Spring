@@ -1,7 +1,18 @@
 const commentButton = document.getElementById("commentButton");
 const commentContents = document.getElementById("commentContents");
 const commentClose = document.getElementById('commentClose');
+const commentList = document.getElementById("commentList");
 
+
+getList();
+
+function getList(){
+    fetch("commentList?bookNumber="+commentButton.getAttribute("data-id"), {
+        method:"GET"
+    })
+    .then(r=>r.text())
+    .then(r=>commentList.innerHTML=r)
+}
 
 
 commentButton.addEventListener("click", ()=>{

@@ -24,6 +24,7 @@
 		
 		<typeAlias type="com.winter.app.files.FileDTO" alias="FileDTO"/>
 		<typeAlias type="com.winter.app.util.Pager" alias="Pager"/>
+		<typeAlias type="com.winter.app.util.ProductCommentPager" alias="ProductCommentPager"/>
 		
 		<typeAlias type="java.util.Map" alias="Map"/>
 		<typeAlias type="java.util.List" alias="List"/>

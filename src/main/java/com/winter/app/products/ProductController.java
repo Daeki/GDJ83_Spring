@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.members.MemberDTO;
 import com.winter.app.util.Pager;
+import com.winter.app.util.ProductCommentPager;
 
 @Controller
 @RequestMapping("/product/*")
@@ -27,6 +28,13 @@ public class ProductController {
 	@ModelAttribute("board")
 	public String getBoard() {
 		return "Product";
+	}
+
+	@GetMapping("commentList")
+	public void commentList(ProductCommentPager productCommentPager, Model model) throws Exception {
+		List<ProductCommentDTO> list = productService.commentList(productCommentPager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", productCommentPager);
 	}
 
 	@PostMapping("commentAdd")
