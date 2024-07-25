@@ -14,6 +14,12 @@ function getList(){
     .then(r=>commentList.innerHTML=r)
 }
 
+commentList.addEventListener("click", (e)=>{
+    if(e.target.classList.contains("pn")){
+        alert("click");
+    }
+})
+
 
 commentButton.addEventListener("click", ()=>{
     commentClose.click();
