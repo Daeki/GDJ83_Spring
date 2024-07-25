@@ -31,6 +31,7 @@ commentButton.addEventListener("click", ()=>{
         r=r.trim();
         if(r>0){
             alert('댓글추가')
+            getList();
         }
     })
 
