@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,6 +27,15 @@ public class ProductController {
 	@ModelAttribute("board")
 	public String getBoard() {
 		return "Product";
+	}
+
+	@PostMapping("commentAdd")
+	public String commentAdd(ProductCommentDTO productCommentDTO, HttpSession session, Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		productCommentDTO.setBoardWriter(memberDTO.getUserName());
+		int result = productService.commentAdd(productCommentDTO);
+		model.addAttribute("msg", result);
+		return "commons/result";
 	}
 
 	@GetMapping("deleteWishList")

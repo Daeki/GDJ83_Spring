@@ -4,6 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="com.winter.app.products.ProductDAO">
+  	<insert id="commentAdd" parameterType="ProductCommentDTO">
+  		INSERT INTO COMMENTS VALUES
+  		(COMMENTS_SEQ.NEXTVAL, #{boardContents}, #{boardWriter}, #{bookNumber}, SYSDATE)
+  	</insert>
+  
   	<delete id="deleteWishList" parameterType="Map">
   		DELETE WISHLIST WHERE USERNAME=#{userName} AND
   		BOOKNUMBER IN 

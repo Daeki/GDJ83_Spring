@@ -3,14 +3,13 @@ package com.winter.app.boards;
 import java.sql.Date;
 import java.util.List;
 
-public class BoardDTO {
-	private Long boardNum;
+public class BoardDTO extends CommentDTO {
+
 	private String boardTitle;
-	private String boardWriter;
-	private Date createDate;
+
 	private Date updateDate;
 	private Long boardHit;
-	private String boardContents;
+
 	private String boardCategory;
 	private Integer del;
 
@@ -35,36 +34,12 @@ public class BoardDTO {
 		this.del = del;
 	}
 
-	public Long getBoardNum() {
-		return boardNum;
-	}
-
-	public void setBoardNum(Long boardNum) {
-		this.boardNum = boardNum;
-	}
-
 	public String getBoardTitle() {
 		return boardTitle;
 	}
 
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
-	}
-
-	public String getBoardWriter() {
-		return boardWriter;
-	}
-
-	public void setBoardWriter(String boardWriter) {
-		this.boardWriter = boardWriter;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
 	}
 
 	public Date getUpdateDate() {
@@ -81,14 +56,6 @@ public class BoardDTO {
 
 	public void setBoardHit(Long boardHit) {
 		this.boardHit = boardHit;
-	}
-
-	public String getBoardContents() {
-		return boardContents;
-	}
-
-	public void setBoardContents(String boardContents) {
-		this.boardContents = boardContents;
 	}
 
 	public String getBoardCategory() {

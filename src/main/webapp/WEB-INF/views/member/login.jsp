@@ -24,7 +24,7 @@
                     	</div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-8 col-xl-6">
-                                <form id="contactForm" action="login" method="post">
+                                <form id="contactForm" action="login" method="post" enctype="application/x-www-form-urlencoded">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control" name="userName" id="userName" type="text" value="${id}" placeholder="Enter your ID..." data-sb-validations="required" />

@@ -18,6 +18,10 @@ public class ProductDAO {
 
 	private final String NAMESPACE = "com.winter.app.products.ProductDAO.";
 
+	public int commentAdd(ProductCommentDTO productCommentDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "commentAdd", productCommentDTO);
+	}
+
 	public int deleteWishList(Map<String, Object> map) throws Exception {
 		return sqlSession.delete(NAMESPACE + "deleteWishList", map);
 	}

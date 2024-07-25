@@ -23,6 +23,10 @@ public class ProductService {
 	@Autowired
 	private FileManager fileManager;
 
+	public int commentAdd(ProductCommentDTO productCommentDTO) throws Exception {
+		return productDAO.commentAdd(productCommentDTO);
+	}
+
 	public int deleteWishList(Long[] bookNumber, String userName) throws Exception {
 		int result = 0;
 		Map<String, Object> map = new HashMap<String, Object>();
