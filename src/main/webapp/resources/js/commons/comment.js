@@ -15,6 +15,7 @@ function getList(){
 }
 
 commentList.addEventListener("click", (e)=>{
+    e.preventDefault();
     if(e.target.classList.contains("pn")){
         alert("click");
     }

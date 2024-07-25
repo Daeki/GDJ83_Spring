@@ -17,13 +17,13 @@
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination justify-content-center">
 				    <li class="page-item ${pager.pre?'':'disabled'}">
-				      <a class="page-link pn" href="list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a>
+				      <a class="page-link pn" href="#?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a>
 				    </li>
 				    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1" var="i">
-				    <li class="page-item"><a class="page-link pn" href="list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+				    <li class="page-item"><a class="page-link pn" href="#?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 				    </c:forEach>
 				    <li class="page-item ${pager.next?'':'disabled'}" >
-				      <a class="page-link pn" href="list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a>
+				      <a class="page-link pn" href="#?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a>
 				    </li>
 				  </ul>
 				</nav>
