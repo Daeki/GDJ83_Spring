@@ -4,6 +4,10 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="com.winter.app.products.ProductDAO">
+  	<delete id="commentDelete" parameterType="ProductCommentDTO">
+  		DELETE COMMENTS WHERE BOARDNUM = #{boardNum}
+  	</delete>
+  
   	<select id="commentTotalCount" resultType="Long" parameterType="ProductCommentPager">
   		SELECT COUNT(BOARDNUM) FROM COMMENTS
   		WHERE BOOKNUMBER=#{bookNumber}

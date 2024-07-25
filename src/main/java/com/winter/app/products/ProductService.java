@@ -24,6 +24,10 @@ public class ProductService {
 	@Autowired
 	private FileManager fileManager;
 
+	public int commentDelete(ProductCommentDTO productCommentDTO) throws Exception {
+		return productDAO.commentDelete(productCommentDTO);
+	}
+
 	public List<ProductCommentDTO> commentList(ProductCommentPager productCommentPager) throws Exception {
 		productCommentPager.makeRow();
 		System.out.println(productDAO);

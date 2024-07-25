@@ -19,6 +19,10 @@ public class ProductDAO {
 
 	private final String NAMESPACE = "com.winter.app.products.ProductDAO.";
 
+	public int commentDelete(ProductCommentDTO productCommentDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "commentDelete", productCommentDTO);
+	}
+
 	public Long commentTotalCount(ProductCommentPager commentPager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "commentTotalCount", commentPager);
 	}

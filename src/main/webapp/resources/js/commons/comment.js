@@ -4,10 +4,10 @@ const commentClose = document.getElementById('commentClose');
 const commentList = document.getElementById("commentList");
 
 
-getList();
+getList(1);
 
-function getList(){
-    fetch("commentList?bookNumber="+commentButton.getAttribute("data-id"), {
+function getList(page){
+    fetch("commentList?bookNumber="+commentButton.getAttribute("data-id")+"&page="+page, {
         method:"GET"
     })
     .then(r=>r.text())
@@ -17,7 +17,31 @@ function getList(){
 commentList.addEventListener("click", (e)=>{
     e.preventDefault();
     if(e.target.classList.contains("pn")){
-        alert("click");
+       let p= e.target.getAttribute("data-page-num");
+       getList(p);
+    }
+})
+
+commentList.addEventListener("click", (e)=>{
+    if(e.target.classList.contains("dels")){
+        let id =e.target.getAttribute("data-del-id");
+        fetch("commentDelete", {
+            method:"POST",
+            headers:{
+                "Content-type":"application/x-www-form-urlencoded"
+            },
+            body:"boardNum="+id
+        })
+        .then(r=>r.text())
+        .then(r=>{
+            r=r.trim();
+            if(r>0){
+                alert('삭제 성공')
+                getList(1)
+            }else {
+                alert('삭제 실패')
+            }
+        })
     }
 })
 
@@ -38,7 +62,7 @@ commentButton.addEventListener("click", ()=>{
         r=r.trim();
         if(r>0){
             alert('댓글추가')
-            getList();
+            getList(1);
         }
     })
 

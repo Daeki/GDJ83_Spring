@@ -9,6 +9,7 @@
 				<td>${comment.boardContents}</td>
 				<td>${comment.boardWriter}</td>
 				<td>${comment.createDate}</td>
+				<td><c:if test="${comment.boardWriter eq member.userName}"><button class="btn btn-danger dels" data-del-id="${comment.boardNum}" type="button">X</button></c:if></td>
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -17,14 +18,13 @@
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination justify-content-center">
 				    <li class="page-item ${pager.pre?'':'disabled'}">
-				      <a class="page-link pn" href="#?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a>
+				      <a class="page-link pn" data-page-num="${pager.startNum-1}" href="#">Previous</a>
 				    </li>
 				    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1" var="i">
-				    <li class="page-item"><a class="page-link pn" href="#?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+				    <li class="page-item"><a class="page-link pn" data-page-num="${i}" href="#">${i}</a></li>
 				    </c:forEach>
 				    <li class="page-item ${pager.next?'':'disabled'}" >
-				      <a class="page-link pn" href="#?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a>
+				      <a class="page-link pn" data-page-num="${pager.lastNum+1}" href="#">Next</a>
 				    </li>
 				  </ul>
 				</nav>
-				<button class="pn">Test</button>

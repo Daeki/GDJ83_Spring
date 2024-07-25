@@ -30,6 +30,14 @@ public class ProductController {
 		return "Product";
 	}
 
+	@PostMapping("commentDelete")
+	public String commentDelete(ProductCommentDTO productCommentDTO, Model model) throws Exception {
+		int result = productService.commentDelete(productCommentDTO);
+		model.addAttribute("msg", result);
+
+		return "commons/result";
+	}
+
 	@GetMapping("commentList")
 	public void commentList(ProductCommentPager productCommentPager, Model model) throws Exception {
 		List<ProductCommentDTO> list = productService.commentList(productCommentPager);
