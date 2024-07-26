@@ -4,12 +4,13 @@
 
 <table class="table table-hover">
 	<tbody>
-		<c:forEach items="${list}" var="comment">
+		<c:forEach items="${list}" var="comment" varStatus="i">
 			<tr>
-				<td>${comment.boardContents}</td>
+				<td id="con${i.index}">${comment.boardContents}</td>
 				<td>${comment.boardWriter}</td>
 				<td>${comment.createDate}</td>
 				<td><c:if test="${comment.boardWriter eq member.userName}"><button class="btn btn-danger dels" data-del-id="${comment.boardNum}" type="button">X</button></c:if></td>
+				<td><c:if test="${comment.boardWriter eq member.userName}"><button class="btn btn-primary ups" data-update-con="con${i.index}" data-del-id="${comment.boardNum}" data-bs-toggle="modal" data-bs-target="#commentModal">수정</button></c:if></td>
 			</tr>
 		</c:forEach>
 	</tbody>

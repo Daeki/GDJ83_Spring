@@ -15,6 +15,15 @@ function getList(page){
 }
 
 commentList.addEventListener("click", (e)=>{
+    if(e.target.classList.contains("ups")){
+        let id=e.target.getAttribute("data-del-id");
+        let c = e.target.getAttribute("data-update-con");
+        c = document.getElementById(c).innerHTML;
+        commentContents.value=c;
+    }
+})
+
+commentList.addEventListener("click", (e)=>{
     e.preventDefault();
     if(e.target.classList.contains("pn")){
        let p= e.target.getAttribute("data-page-num");
