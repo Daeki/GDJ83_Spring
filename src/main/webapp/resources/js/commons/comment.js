@@ -81,24 +81,30 @@ commentButton.addEventListener("click", ()=>{
     }
 
     let url="commentAdd";
-    let param="boardContents="+contents+"&bookNumber="+commentButton.getAttribute("data-id");
+
+    const form = new FormData();//<form></form>
+    form.append("boardContents", contents);//<input type="text" name="boardContents", value="contens값">
+    form.append("bookNumber", commentButton.getAttribute("data-id"));//<input type="text" name="bookNumber", value=""></input>
+    form.append("boardNum", boardNum);
+   
+
+    //let param="boardContents="+contents+"&bookNumber="+commentButton.getAttribute("data-id");
 
     if(!flag){
         url="commentUpdate";
-        param="boardContents="+contents+"&boardNum="+boardNum;
+    //    param="boardContents="+contents+"&boardNum="+boardNum;
         msg = "댓글 수정 성공"
     }
 
-    console.log(url);
-    console.log(param);
+
     commentClose.click();
 
     fetch(url, {
         method:"POST",
-        headers:{
-            "Content-type":"application/x-www-form-urlencoded"
-        },
-        body:param
+        // headers:{
+        //     "Content-type":"application/x-www-form-urlencoded"
+        // },
+        body:form
     })
     .then(r=>r.text())
     .then(r=>{
@@ -109,5 +115,6 @@ commentButton.addEventListener("click", ()=>{
         }
     })
 
+    alert("test");
     commentContents.value="";
 })
