@@ -17,7 +17,7 @@ function getList(page){
 
 //true:등록, false:수정
 let flag=true;
-let bookNumber=0;
+let boardNum=0;
 //openModal
 openModal.addEventListener("click", ()=>{
     flag=true;
@@ -30,7 +30,7 @@ commentList.addEventListener("click", (e)=>{
     if(e.target.classList.contains("ups")){
         flag=false;
         //댓글번호
-        bookNumber=e.target.getAttribute("data-del-id");
+        boardNum=e.target.getAttribute("data-del-id");
         let c = e.target.getAttribute("data-update-con");
         c = document.getElementById(c).innerHTML;
         commentContents.value=c;
@@ -74,7 +74,7 @@ commentList.addEventListener("click", (e)=>{
 //등록, 수정 
 commentButton.addEventListener("click", ()=>{
     let contents =commentContents.value;
-
+    let msg="댓글 추가 성공";
     if(contents==null || contents==""){
         alert("댓글을 입력");
         return;
@@ -85,28 +85,29 @@ commentButton.addEventListener("click", ()=>{
 
     if(!flag){
         url="commentUpdate";
-        param="boardContents="+contents+"&boardNum="+bookNumber;
+        param="boardContents="+contents+"&boardNum="+boardNum;
+        msg = "댓글 수정 성공"
     }
 
     console.log(url);
     console.log(param);
     commentClose.click();
 
-    // fetch(url, {
-    //     method:"POST",
-    //     headers:{
-    //         "Content-type":"application/x-www-form-urlencoded"
-    //     },
-    //     body:param
-    // })
-    // .then(r=>r.text())
-    // .then(r=>{
-    //     r=r.trim();
-    //     if(r>0){
-    //         alert('댓글추가')
-    //         getList(1);
-    //     }
-    // })
+    fetch(url, {
+        method:"POST",
+        headers:{
+            "Content-type":"application/x-www-form-urlencoded"
+        },
+        body:param
+    })
+    .then(r=>r.text())
+    .then(r=>{
+        r=r.trim();
+        if(r>0){
+            alert(msg);
+            getList(1);
+        }
+    })
 
-    // commentContents.value="";
+    commentContents.value="";
 })
