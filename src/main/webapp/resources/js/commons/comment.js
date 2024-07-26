@@ -2,6 +2,7 @@ const commentButton = document.getElementById("commentButton");
 const commentContents = document.getElementById("commentContents");
 const commentClose = document.getElementById('commentClose');
 const commentList = document.getElementById("commentList");
+const openModal = document.getElementById("openModal");
 
 
 getList(1);
@@ -14,12 +15,26 @@ function getList(page){
     .then(r=>commentList.innerHTML=r)
 }
 
+//true:등록, false:수정
+let flag=true;
+let bookNumber=0;
+//openModal
+openModal.addEventListener("click", ()=>{
+    flag=true;
+    commentButton.innerHTML="댓글등록";
+    commentContents.value="";
+})
+
+//수정
 commentList.addEventListener("click", (e)=>{
     if(e.target.classList.contains("ups")){
-        let id=e.target.getAttribute("data-del-id");
+        flag=false;
+        //댓글번호
+        bookNumber=e.target.getAttribute("data-del-id");
         let c = e.target.getAttribute("data-update-con");
         c = document.getElementById(c).innerHTML;
         commentContents.value=c;
+        commentButton.innerHTML="댓글수정";
     }
 })
 
@@ -55,25 +70,43 @@ commentList.addEventListener("click", (e)=>{
 })
 
 
+
+//등록, 수정 
 commentButton.addEventListener("click", ()=>{
-    commentClose.click();
     let contents =commentContents.value;
 
-    fetch("commentAdd", {
-        method:"POST",
-        headers:{
-            "Content-type":"application/x-www-form-urlencoded"
-        },
-        body:"boardContents="+contents+"&bookNumber="+commentButton.getAttribute("data-id")
-    })
-    .then(r=>r.text())
-    .then(r=>{
-        r=r.trim();
-        if(r>0){
-            alert('댓글추가')
-            getList(1);
-        }
-    })
+    if(contents==null || contents==""){
+        alert("댓글을 입력");
+        return;
+    }
 
-    commentContents.value="";
+    let url="commentAdd";
+    let param="boardContents="+contents+"&bookNumber="+commentButton.getAttribute("data-id");
+
+    if(!flag){
+        url="commentUpdate";
+        param="boardContents="+contents+"&boardNum="+bookNumber;
+    }
+
+    console.log(url);
+    console.log(param);
+    commentClose.click();
+
+    // fetch(url, {
+    //     method:"POST",
+    //     headers:{
+    //         "Content-type":"application/x-www-form-urlencoded"
+    //     },
+    //     body:param
+    // })
+    // .then(r=>r.text())
+    // .then(r=>{
+    //     r=r.trim();
+    //     if(r>0){
+    //         alert('댓글추가')
+    //         getList(1);
+    //     }
+    // })
+
+    // commentContents.value="";
 })
